@@ -57,7 +57,9 @@
   }
   // In der App per Titel suchen – zuverlässiger als die Sender-Seite: deren Adresse in den
   // Mediathek-Daten ist manchmal veraltet (ARD: 404), der Film selbst aber noch da
-  const search = query || title;
+  // Ganze Serie („Serie: Hacks“): die Serienseite zeigt alle Folgen – ohne Seite nach dem Namen suchen
+  const isSeries = /^Serie:\s*/.test(title);
+  const search = isSeries && allowed(page) ? "" : query || title.replace(/^Serie:\s*/, "");
   let appUrl = "";
   if (search) {
     appUrl = "mediathek-extractor://suche?q=" + encodeURIComponent(search);
