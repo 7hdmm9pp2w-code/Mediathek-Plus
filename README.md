@@ -27,6 +27,7 @@
 
 ## Neu in 2.4
 
+- **2.4.1:** Die Mitteilung „Download fertig“ hat einen Knopf „Im Finder zeigen“ (Windows: Explorer). NAS-Downloads melden sich auch am Rechner und stehen mit Fortschritt in der Seitenleiste.
 - **Suche findet mehr:** englische und Originaltitel („Anatomy of a Fall“), Akzente egal („Penelope Cruz“), „Meintest du …?“ bei Tippfehlern, „Filme mit …“ bei bekannten Namen. Treffer kommen sofort, die ARTE-Ergänzung läuft im Hintergrund.
 - **Originalton sichtbar:** „+ Englisch“ in Liste und Postern; Serienseiten (z. B. ein geteilter ZDF-Link) finden die Originalfassungen je Folge. Die Original-Tonspur trägt jetzt die richtige Sprache.
 - **Seitenleiste:** laufende Downloads unten mit Fortschritt, Zähler für Neues in „Für dich“ und der Bibliothek (mit dem NAS abgeglichen).
