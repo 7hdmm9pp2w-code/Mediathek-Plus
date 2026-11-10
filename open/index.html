@@ -6,8 +6,8 @@
 <meta name="robots" content="noindex">
 <link rel="icon" href="../icon.png">
 <title>Mediathek Plus – Link öffnen</title>
-<!-- Link-Seite für geteilte Filme: öffnet die App („mediathek-extractor://…“) bzw. zeigt ohne App
-     die Sender-Seite und den Download. Keine externen Dateien, kein Tracking. -->
+<!-- Link-Seite für geteilte Filme: gleich im Browser anschauen (Sofa-Web-App), in der App öffnen
+     („mediathek-extractor://…“), beim Sender ansehen oder die App laden. Keine externen Dateien, kein Tracking. -->
 <style>
   :root { --bg: #f6f7f9; --card: #fff; --text: #1d2330; --muted: #5d6576; --accent: #3a5bd9; --border: #dfe3ea; }
   @media (prefers-color-scheme: dark) {
@@ -21,6 +21,10 @@
   p { color: var(--muted); margin: 6px 0 18px; }
   a.btn { display: block; text-align: center; padding: 11px 14px; border-radius: 9px; text-decoration: none; margin-top: 10px; border: 1px solid var(--border); color: var(--text); }
   a.btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  .two { display: flex; gap: 10px; }
+  .two a.btn { flex: 1; }
+  .more { display: flex; justify-content: center; gap: 18px; margin-top: 14px; font-size: 14px; }
+  .more a { color: var(--muted); }
   small { display: block; color: var(--muted); margin-top: 18px; font-size: 13px; }
   [hidden] { display: none !important; }
 </style>
@@ -29,11 +33,16 @@
 <main>
   <img class="logo" src="../icon.png" alt="Mediathek Plus">
   <h1 id="title">Filmtipp</h1>
-  <p id="hint">Wird in Mediathek Plus geöffnet …</p>
-  <a class="btn primary" id="app" href="#">In Mediathek Plus öffnen</a>
-  <a class="btn" id="sender" href="#" hidden>Beim Sender ansehen</a>
-  <a class="btn" id="download" href="https://github.com/7hdmm9pp2w-code/Mediathek-Plus">Mediathek Plus herunterladen</a>
-  <small>Mediathek Plus sucht und lädt Filme aus den Mediatheken von ARD, ZDF, ARTE, 3sat … – kostenlos für Mac, Windows und Linux.</small>
+  <p id="hint">Gleich im Browser anschauen – oder in Mediathek Plus öffnen.</p>
+  <div class="two">
+    <a class="btn primary" id="sofa" href="#">▶ Im Browser anschauen</a>
+    <a class="btn" id="app" href="#">In der App öffnen</a>
+  </div>
+  <div class="more">
+    <a id="sender" href="#" hidden>Beim Sender ansehen</a>
+    <a id="download" href="https://github.com/7hdmm9pp2w-code/Mediathek-Plus">Mediathek Plus herunterladen</a>
+  </div>
+  <small>Mediathek Plus: Filme, Serien und Live-TV aus den Mediatheken von ARD, ZDF, ARTE, 3sat … – im Browser schauen oder als App für Mac, Windows, Linux und NAS. Kostenlos.</small>
 </main>
 <script>
   // Gleiche Liste wie in der App (src/lib/links.ts): nur Seiten der Sender
@@ -84,17 +93,19 @@
     sender.href = senderSearch(page, title);
     sender.hidden = false;
   }
+  // Sofa im Browser: dieselben Angaben weiterreichen, die Web-App sucht den Titel und zeigt ihn gleich an.
+  // Bis zum Release 3.0 die Testseite, danach "../sofa/"
+  const SOFA = "../sofa-test/";
+  const sofa = document.getElementById("sofa");
+  const name = query || title.replace(/^Serie:\s*/, "");
+  if (name) sofa.href = SOFA + "?" + new URLSearchParams({ t: name });
+  else sofa.hidden = true;
   const app = document.getElementById("app");
   if (appUrl) {
     app.href = appUrl;
-    // Direkt versuchen; der Browser fragt meist nach, ob die App geöffnet werden darf
-    location.href = appUrl;
-    setTimeout(() => {
-      document.getElementById("hint").textContent = "Nichts passiert? Dann ist Mediathek Plus hier nicht installiert – oder öffne den Film direkt beim Sender.";
-    }, 1500);
   } else {
     app.hidden = true;
-    document.getElementById("hint").textContent = "Dieser Link ist unvollständig.";
+    if (!name) document.getElementById("hint").textContent = "Dieser Link ist unvollständig.";
   }
 </script>
 </body>
