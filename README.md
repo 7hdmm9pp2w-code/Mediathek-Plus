@@ -27,6 +27,7 @@
 
 ## Neu in 2.4
 
+- **2.4.3:** Folgen von Serienseiten heißen „Serie – S01E01 – Titel“; Miniserien ohne Staffel-Ordner. „✓ geladen“ erkennt Folgen aus anderen Quellen, sagt warum (mit „Im Finder zeigen“) und lässt sich überstimmen; „Nur Ton“ zählt nicht mehr als geladenes Video; die Merkliste lädt nichts doppelt.
 - **2.4.2:** Serien landen im Serienordner – auch Folgen von Serienseiten (z. B. ein ZDF-Link) und Miniserien ohne Staffel; Doku-Reihen im Dokuordner. Serien in „Für dich“ und geteilte Serien zeigen alle Folgen.
 - **2.4.1:** Die Mitteilung „Download fertig“ hat einen Knopf „Im Finder zeigen“ (Windows: Explorer). NAS-Downloads melden sich auch am Rechner und stehen mit Fortschritt in der Seitenleiste.
 - **Suche findet mehr:** englische und Originaltitel („Anatomy of a Fall“), Akzente egal („Penelope Cruz“), „Meintest du …?“ bei Tippfehlern, „Filme mit …“ bei bekannten Namen. Treffer kommen sofort, die ARTE-Ergänzung läuft im Hintergrund.
