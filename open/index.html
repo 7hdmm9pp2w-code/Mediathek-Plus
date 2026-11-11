@@ -95,7 +95,7 @@
   }
   // Sofa im Browser: dieselben Angaben weiterreichen, die Web-App sucht den Titel und zeigt ihn gleich an.
   // Bis zum Release 3.0 die Testseite, danach "../sofa/"
-  const SOFA = "../sofa-test/";
+  const SOFA = "../sofa/";
   const sofa = document.getElementById("sofa");
   const name = query || title.replace(/^Serie:\s*/, "");
   if (name) sofa.href = SOFA + "?" + new URLSearchParams({ t: name });
