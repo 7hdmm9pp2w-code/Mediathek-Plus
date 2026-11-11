@@ -67,6 +67,9 @@ def main():
     if stage:
         infos[stage[0]["url"]] = stage[1]
     rest = [v for k in ("series", "docs", "kids", "picks") for v in shelves[k] if not (infos.get(v["url"]) or {}).get("poster")]
+    # Filme mit Plakat: dazu das Szenenbild des Senders – für das große Bild oben in der Detailansicht
+    seen = {v["url"] for v in rest}
+    rest += [v for k in ("films", "expiring", "picks") for v in shelves[k] if v["url"] not in seen and not seen.add(v["url"])]
     art = call("artwork", {"videos": rest}, timeout=900) if rest else {}
 
     # Trailer: nur für das, was vorne steht (eine Anfrage je Film)
