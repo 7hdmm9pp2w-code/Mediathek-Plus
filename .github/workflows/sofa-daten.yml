@@ -1,0 +1,56 @@
+# Sofa-Web-App (Stufe G): frische Reihen für https://7hdmm9pp2w-code.github.io/Mediathek-Plus/sofa/
+# Gehört ins ÖFFENTLICHE Repo Mediathek-Plus nach .github/workflows/ (dort kosten Läufe keine Minuten).
+# Startet das NAS-Image (TMDB-Token steckt schon drin), fragt die Reihen ab und legt sofa.json auf gh-pages.
+# Voraussetzung: Image mit Sofa (ab 3.0) und tools/sofa-export.py im Repo (beim Release kopieren).
+name: Sofa-Daten
+
+on:
+  schedule:
+    - cron: "17 */4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sofa-daten
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: tools
+      - uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+          path: pages
+          fetch-depth: 2
+      - name: Mediathek Plus starten (nur 127.0.0.1, ohne Passwort)
+        run: |
+          docker run -d --name mx --network host -e MX_HOST=127.0.0.1 -e MX_PORT=8080 ghcr.io/7hdmm9pp2w-code/mediathek-plus:latest
+          for i in $(seq 1 60); do curl -sf -X POST -H 'Content-Type: application/json' -d '{}' http://127.0.0.1:8080/api/app_info >/dev/null && break; sleep 2; done
+      - name: Reihen abfragen
+        run: |
+          mkdir -p pages/sofa
+          python3 tools/sofa-export.py http://127.0.0.1:8080 pages/sofa/sofa.json
+      # Immer nur EIN Daten-Commit obenauf: ist der letzte schon einer, wird er ersetzt (Force-Push) –
+      # sonst wüchse die Historie um ~1,3 MB alle 4 Stunden (≈ 3 GB im Jahr)
+      - name: Veröffentlichen
+        working-directory: pages
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sofa/sofa.json
+          git diff --cached --quiet && exit 0
+          msg="Sofa-Daten $(date -u +%Y-%m-%dT%H:%MZ)"
+          if git log -1 --format=%s | grep -q '^Sofa-Daten '; then
+            git commit --amend -m "$msg" && git push --force-with-lease
+          else
+            git commit -m "$msg" && git push
+          fi
+      - if: always()
+        run: docker logs mx 2>&1 | tail -30

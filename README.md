@@ -17,6 +17,7 @@
 
 | Bereich | Was die App kann |
 |---|---|
+| 🛋&nbsp;**Sofa** | Einfach schauen: Filme, Serien, Dokus und Live-TV aller Sender direkt abspielen – mit Weiterschauen, nächster Folge, Originalton und Untertiteln, „Für später“ speichern und ganz mit Pfeiltasten bedienbar. Auch ohne Installation [im Browser](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/sofa/) |
 | ✨&nbsp;**Für dich** | Jeden Tag ein Film des Tages und Vorschläge nach deinem Geschmack – mit Begründung („Regie wie bei …“), berechnet auf deinem Rechner; lernt auf Wunsch aus dem, was du in Jellyfin gesehen hast |
 | 🔎&nbsp;**Suchen** | Alle öffentlich-rechtlichen Mediatheken auf einmal – mit Plakat, Bewertung, Genre, Regie und Besetzung |
 | ★&nbsp;**Merkliste** | Filme, Serien und ganze Suchen verfolgen. Taucht etwas auf, meldet sich die App und lädt es auf Wunsch selbst |
@@ -25,18 +26,12 @@
 | 📤&nbsp;**Teilen** | Filmtipps als Liste mit einem einzigen Link – wer die App hat, übernimmt alle mit einem Klick |
 | 🗄&nbsp;**NAS** | Läuft auch als Docker-Container auf Synology & Co.; die Desktop-App schickt Downloads dorthin, das NAS lädt rund um die Uhr, Einstellungen gelten auf beiden gleich – einrichten mit dem [yml-Baukasten](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/nas/), [Anleitung](NAS.md) |
 
-## Neu in 2.4
+## Neu in 3.0
 
-- **2.4.3:** Folgen von Serienseiten heißen „Serie – S01E01 – Titel“; Miniserien ohne Staffel-Ordner. „✓ geladen“ erkennt Folgen aus anderen Quellen, sagt warum (mit „Im Finder zeigen“) und lässt sich überstimmen; „Nur Ton“ zählt nicht mehr als geladenes Video; die Merkliste lädt nichts doppelt.
-- **2.4.2:** Serien landen im Serienordner – auch Folgen von Serienseiten (z. B. ein ZDF-Link) und Miniserien ohne Staffel; Doku-Reihen im Dokuordner. Serien in „Für dich“ und geteilte Serien zeigen alle Folgen.
-- **2.4.1:** Die Mitteilung „Download fertig“ hat einen Knopf „Im Finder zeigen“ (Windows: Explorer). NAS-Downloads melden sich auch am Rechner und stehen mit Fortschritt in der Seitenleiste.
-- **Suche findet mehr:** englische und Originaltitel („Anatomy of a Fall“), Akzente egal („Penelope Cruz“), „Meintest du …?“ bei Tippfehlern, „Filme mit …“ bei bekannten Namen. Treffer kommen sofort, die ARTE-Ergänzung läuft im Hintergrund.
-- **Originalton sichtbar:** „+ Englisch“ in Liste und Postern; Serienseiten (z. B. ein geteilter ZDF-Link) finden die Originalfassungen je Folge. Die Original-Tonspur trägt jetzt die richtige Sprache.
-- **Seitenleiste:** laufende Downloads unten mit Fortschritt, Zähler für Neues in „Für dich“ und der Bibliothek (mit dem NAS abgeglichen).
-- **Warteschlange:** in der Höhe ziehbar, Klick auf einen Titel zeigt die Details; Downloads laufen weiter, während der Originalton angehängt wird.
-- **Update direkt im Über-Fenster:** „Nach Updates suchen“ bietet gleich „Jetzt aktualisieren“ an.
-
-Davor in 2.3: Downloads robuster bei HTTP/2-Abbrüchen, Logo entfernen der Reihe nach, „Neu dabei“ bei den Empfehlungen. In 2.2: Senderlogo entfernen (17 Sender), Rechner und NAS abgeglichen, [Hilfe-Seite](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/hilfe/).
+- **Sofa:** eine eigene, ruhige Oberfläche zum Entdecken und Schauen – ohne Ordner, Hilfsprogramme und Einstellungen. Bei der Einrichtung vorausgewählt; Standard und Profi gibt es weiter für alle, die Filme sammeln.
+- **Sofa im Browser:** dieselbe Oberfläche ohne Installation, für Tablet, Handy und Fernseher – [jetzt ausprobieren](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/sofa/).
+- **Kurz & gut:** Kurzbeiträge nach Themen wie Ausstellungen, Fotografie oder Kochen, quer durch alle Sender.
+- **Originalton auch bei ARTE-Streams**, **Bibliothek aufräumen** und ARTE-Filme immer in H.264.
 
 Alle Änderungen: [Releases](../../releases)
 
@@ -73,6 +68,6 @@ Mediathek Plus baut auf freier Software und offenen Daten auf:
 Alle sind unabhängig und nicht für diese App verantwortlich.
 *This product uses the TMDB API but is not endorsed or certified by TMDB.*
 
-Danke an Haiko, Marko, Johannes, Jan und Philipp fürs Testen und viele Anregungen.
+Ein besonderer Dank geht an Haiko und Marko fürs ausdauernde Testen und für viele Anregungen, ebenso an Johannes, Jan und Philipp – und an alle anderen, die getestet und Ideen beigesteuert haben.
 
 Dieses Repository enthält nur die Installer; der Quellcode ist nicht öffentlich.
