@@ -41,7 +41,7 @@ Alle Änderungen: [Releases](../../releases)
 |---|---|
 | Mac | `…-macOS.dmg` – oder `brew tap 7hdmm9pp2w-code/tap && brew trust 7hdmm9pp2w-code/tap && brew install --cask mediathek-extractor` |
 | Windows | `…-Windows-Installer.exe` (ARM: `…-ARM-Installer.exe`), ohne Installation: `…-portabel.zip` |
-| Linux | `…-Linux.AppImage` oder `…-Linux-Debian-Ubuntu.deb` |
+| Linux | `…-x86_64.AppImage` oder `…-Linux-Debian-Ubuntu.deb` |
 
 Die Installer sind nicht signiert – was beim ersten Start zu tun ist, steht beim [Download](../../releases/latest). Danach aktualisiert sich die App von selbst.
 
