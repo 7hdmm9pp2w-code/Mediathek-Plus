@@ -4,11 +4,19 @@
     <meta charset="utf-8" />
     <link rel="icon" href="/Mediathek-Plus/sofa/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Als App auf den Home-Bildschirm (Web-App, NAS): eigenes Symbol, ohne Adressleiste -->
+    <link rel="manifest" href="/Mediathek-Plus/sofa/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/Mediathek-Plus/sofa/app-icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="Mediathek Plus" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="theme-color" content="#0e0f13" />
     <title>Mediathek Plus</title>
-    <link href="/Mediathek-Plus/sofa/_app/immutable/entry/start.C5Kqcuki.js" rel="modulepreload">
-		<link href="/Mediathek-Plus/sofa/_app/immutable/chunks/BZUE-oss.js" rel="modulepreload">
+    <link href="/Mediathek-Plus/sofa/_app/immutable/entry/start.Fsza6BTL.js" rel="modulepreload">
+		<link href="/Mediathek-Plus/sofa/_app/immutable/chunks/5wUGVUFP.js" rel="modulepreload">
 		<link href="/Mediathek-Plus/sofa/_app/immutable/chunks/CYwJsUqI.js" rel="modulepreload">
-		<link href="/Mediathek-Plus/sofa/_app/immutable/entry/app.DXLU-d7N.js" rel="modulepreload">
+		<link href="/Mediathek-Plus/sofa/_app/immutable/entry/app.WlTFqUtD.js" rel="modulepreload">
 		<link href="/Mediathek-Plus/sofa/_app/immutable/chunks/xihTtKlq.js" rel="modulepreload">
 		<link href="/Mediathek-Plus/sofa/_app/immutable/chunks/CRzLMJPS.js" rel="modulepreload">
 		<link href="/Mediathek-Plus/sofa/_app/immutable/nodes/0.CHc8UcdS.js" rel="modulepreload">
@@ -19,7 +27,7 @@
     <div style="display: contents">
 			<script>
 				{
-					__sveltekit_12osb19 = {
+					__sveltekit_1rai1mg = {
 						base: "/Mediathek-Plus/sofa",
 						assets: "/Mediathek-Plus/sofa"
 					};
@@ -27,8 +35,8 @@
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("/Mediathek-Plus/sofa/_app/immutable/entry/start.C5Kqcuki.js"),
-						import("/Mediathek-Plus/sofa/_app/immutable/entry/app.DXLU-d7N.js")
+						import("/Mediathek-Plus/sofa/_app/immutable/entry/start.Fsza6BTL.js"),
+						import("/Mediathek-Plus/sofa/_app/immutable/entry/app.WlTFqUtD.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element);
 					});

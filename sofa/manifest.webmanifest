@@ -1,0 +1,16 @@
+{
+  "name": "Mediathek Plus",
+  "short_name": "Mediathek Plus",
+  "description": "Filme, Serien, Dokus und Live-TV der öffentlich-rechtlichen Mediatheken",
+  "lang": "de",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0e0f13",
+  "theme_color": "#0e0f13",
+  "icons": [
+    { "src": "app-icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "app-icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
