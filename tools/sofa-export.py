@@ -16,6 +16,8 @@ SERVER = sys.argv[1].rstrip("/") if len(sys.argv) > 1 else "http://127.0.0.1:808
 OUT = sys.argv[2] if len(sys.argv) > 2 else "sofa.json"
 
 # Höchstzahl Einträge je Reihe in der Datei (Serien: Folgen, werden in der Web-App zu Karten)
+# „Kurz & gut“ – gleiche Themen wie SHORT_TOPICS in src/lib/sofa/store.svelte.ts
+SHORT = ["ausstellung", "fotogr", "rezept,kochen", "architektur", "musik,konzert", "theater", "literatur,buchtipp", "natur,tiere"]
 LIMITS = {"films": 160, "series": 400, "docs": 200, "kids": 200, "expiring": 80, "live": 80}
 # Diese Felder braucht die Web-App; der Rest bleibt draußen (Dateigröße)
 KEEP = (
@@ -55,6 +57,9 @@ def main():
     for kind, limit in LIMITS.items():
         shelves[kind] = [slim(v) for v in call("sofa_shelf", {"kind": kind, "channel": None})[:limit]]
         print(f"{kind}: {len(shelves[kind])}", file=sys.stderr)
+    for words in SHORT:
+        shelves[f"short:{words}"] = [slim(v) for v in call("sofa_shelf", {"kind": f"short:{words}", "channel": None})[:40]]
+    print(f"Kurz & gut: {sum(len(shelves[f'short:{w}']) for w in SHORT)}", file=sys.stderr)
     picks = [v for v in call("filmdienst_list") if not (v.get("media") or {}).get("played")]
     shelves["picks"] = [slim(v) for v in picks]
     stage = call("film_of_the_day")
@@ -70,6 +75,8 @@ def main():
     # Filme mit Plakat: dazu das Szenenbild des Senders – für das große Bild oben in der Detailansicht
     seen = {v["url"] for v in rest}
     rest += [v for k in ("films", "expiring", "picks") for v in shelves[k] if v["url"] not in seen and not seen.add(v["url"])]
+    # Kurzbeiträge: Vorschaubild der Senderseite
+    rest += [v for w in SHORT for v in shelves[f"short:{w}"] if v["url"] not in seen and not seen.add(v["url"])]
     art = call("artwork", {"videos": rest}, timeout=900) if rest else {}
 
     # Trailer: nur für das, was vorne steht (eine Anfrage je Film)
