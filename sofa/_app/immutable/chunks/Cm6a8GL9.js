@@ -1,0 +1,1 @@
+export{r as webInvoke}from"./oQebQ5yP.js";
