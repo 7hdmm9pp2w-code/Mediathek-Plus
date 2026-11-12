@@ -74,7 +74,11 @@ Erst nachschlagen? Die [Hilfe](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/
 
 ## Datenschutz
 
-Kein Server, kein Konto, keine Analyse. Merkliste, Verlauf, Vorschläge und Einstellungen bleiben auf deinem Rechner (bzw. deinem NAS). Für Suche, Filminfos und Downloads fragt die App direkt bei den unten genannten Diensten und den Sendern an; diese sehen dabei deine IP-Adresse und den Suchbegriff bzw. Filmtitel.
+Kein Server, kein Konto, keine Analyse, keine Werbung. Mediathek Plus sammelt keine Daten und gibt nichts weiter.
+
+- **App am Rechner und NAS:** Merkliste, Verlauf, Vorschläge und Einstellungen bleiben auf deinem Rechner bzw. NAS.
+- **Sofa im Browser und auf dem Fernseher** (LG, Fire TV, Android TV): Meine Liste, Weiterschauen, Lieblingssender, Lautstärke und Einstellungen bleiben im Speicher des Browsers bzw. Fernsehers und werden nicht übertragen. Die Oberfläche und die Daten der Startseite kommen von GitHub Pages.
+- Für Suche, Filminfos, Bilder, Trailer, Videos und Downloads fragt Mediathek Plus direkt bei den unten genannten Diensten und den Sendern an. Diese sehen dabei deine IP-Adresse und den Suchbegriff bzw. Filmtitel; es gelten ihre Datenschutzbestimmungen.
 
 Bitte nur für Inhalte nutzen, die du privat speichern darfst. Kopiergeschützte Inhalte lädt die App nicht. Kein Angebot von ARD, ZDF oder anderen Sendern.
 
