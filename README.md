@@ -4,14 +4,16 @@
 
 **[⬇ Neueste Version herunterladen](../../releases/latest)** · kostenlos · ohne Konto · ohne Werbung
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="bilder/fuer-dich-dunkel.png">
-  <img src="bilder/fuer-dich-hell.png" alt="Mediathek Plus: „Für dich“ mit Empfehlungen von filmdienst.de und den Mediathekperlen, rechts die Detailansicht eines Films">
-</picture>
+<table>
+  <tr>
+    <td align="center" width="25%"><a href="bilder/sofa.jpg"><img src="bilder/sofa.jpg" alt="Sofa: Startseite mit Film des Tages und Sehenswert"></a><br><sub><b>🛋 Sofa</b><br>entdecken und schauen</sub></td>
+    <td align="center" width="25%"><a href="bilder/fernseher.jpg"><img src="bilder/fernseher.jpg" alt="Live-TV auf dem Fernseher mit Senderliste und „Jetzt läuft“"></a><br><sub><b>📺 Fernseher</b><br>Live-TV mit Senderliste</sub></td>
+    <td align="center" width="25%"><a href="bilder/standard.jpg"><img src="bilder/standard.jpg" alt="Standard: Mediathek-Suche mit Detailansicht und „bestes Bild“"></a><br><sub><b>Standard</b><br>suchen und laden</sub></td>
+    <td align="center" width="25%"><a href="bilder/profi.jpg"><img src="bilder/profi.jpg" alt="Profi: „Für dich“ mit Filtern nach Sender, Genre und Jahrzehnt"></a><br><sub><b>Profi</b><br>für Sammler</sub></td>
+  </tr>
+</table>
 
-<sub>Filmbilder für den Screenshot weichgezeichnet – in der App sind sie scharf.</sub>
-
-*Früher „Mediathek-Extractor“: einfach drüber installieren – Merkliste, Verlauf und Einstellungen bleiben.*
+<sub>Zum Vergrößern anklicken. Film- und Sendebilder für die Screenshots weichgezeichnet – in der App sind sie scharf.</sub>
 
 ## Was die App kann
 
