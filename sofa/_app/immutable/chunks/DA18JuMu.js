@@ -1,0 +1,1 @@
+export{r as webInvoke}from"./bec8nloo.js";
