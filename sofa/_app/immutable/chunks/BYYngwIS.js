@@ -1,0 +1,1 @@
+export{r as webInvoke}from"./Cbh7Gd1k.js";
