@@ -112,6 +112,7 @@
   // sonst hält docker compose „$abc“ für eine Variable
   const q = (s) => `"${s.replace(/\\/g, "\\\\").replace(/"/g, '\\"').replace(/\$/g, "$$$$")}"`;
 
+  const randomPassword = Array.from(crypto.getRandomValues(new Uint8Array(12)), (b) => "abcdefghjkmnpqrstuvwxyz23456789"[b % 31]).join("");
   function render() {
     const root = "/" + clean($("root").value || "volume1");
     const kinds = ["film", "serie", "doku"].map((k) => ({ k, share: clean($(k + "-share").value), sub: clean($(k + "-sub").value) }));
@@ -119,7 +120,8 @@
     const path = (x) => [root, x.share, x.sub].filter(Boolean).join("/");
     const extra = [...document.querySelectorAll("#extra input")].map((i) => clean(i.value)).filter(Boolean);
     const shares = [...new Set([...[film, ...kinds.slice(1)].filter((x) => x.share).map((x) => x.share), ...extra])];
-    const password = $("password").value || "bitte-ändern";
+    // Ohne eigenes Passwort ein zufälliges (das Beispielpasswort sperrt der Server)
+    const password = $("password").value || randomPassword;
     const lines = [
       "services:",
       "  mediathek-plus:",

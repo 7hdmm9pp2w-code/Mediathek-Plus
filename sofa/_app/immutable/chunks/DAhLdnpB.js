@@ -1,0 +1,1 @@
+export{r as webInvoke}from"./CK7NfS7-.js";
