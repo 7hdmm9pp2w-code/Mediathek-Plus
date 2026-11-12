@@ -74,7 +74,7 @@ Mediathek Plus baut auf freier Software und offenen Daten auf:
 [MediathekViewWeb](https://mediathekviewweb.de) / [MediathekView](https://mediathekview.de) ([unterstützen](https://mediathekview.de/spenden/)) ·
 [kinogrid.com](https://kinogrid.com) · Filmtipps von [filmdienst.de](https://www.filmdienst.de) und den [Mediathekperlen](https://nexxtpress.de/author/mediathekperlen/) (mit freundlicher Genehmigung) ·
 [TMDB](https://www.themoviedb.org) · [Wikidata](https://www.wikidata.org) (CC0) und [Wikipedia](https://de.wikipedia.org) (CC BY-SA) ·
-[Tauri](https://tauri.app) (MIT/Apache-2.0) · [hls.js](https://github.com/video-dev/hls.js) (Apache-2.0).
+[Tauri](https://tauri.app) (MIT/Apache-2.0) · [hls.js](https://github.com/video-dev/hls.js) (Apache-2.0) · [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator) (MIT).
 Alle sind unabhängig und nicht für diese App verantwortlich.
 *This product uses the TMDB API but is not endorsed or certified by TMDB.*
 
