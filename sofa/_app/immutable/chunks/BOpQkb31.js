@@ -1,0 +1,1 @@
+export{r as webInvoke}from"./BQmooRFd.js";
