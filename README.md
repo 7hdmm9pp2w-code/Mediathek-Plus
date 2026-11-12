@@ -53,7 +53,16 @@ Die Installer sind nicht signiert – was beim ersten Start zu tun ist, steht be
 
 ### Auf dem Fernseher
 
-**Fire TV** (Stick, Cube): Einstellungen → Mein Fire TV → Info → siebenmal auf den Gerätenamen drücken. Unter Entwickleroptionen „Apps unbekannter Herkunft“ für die App **Downloader** erlauben, darin die Adresse der `MediathekPlus-TV.apk` aus dem [neuesten Release](../../releases/latest) eingeben und installieren. **Android TV / Google TV:** ebenso mit Downloader oder per `adb install`.
+**Fire TV** (Stick, Cube) – einmalig, etwa 5 Minuten:
+
+1. **App „Downloader“ installieren:** Auf der Startseite die Suche (Lupe) öffnen, „Downloader“ eingeben und die App vom Herausgeber **AFTVnews** wählen → Herunterladen. Achtung: Es gibt Nachahmer mit ähnlichem Namen (z. B. „Downloader for Fire, Browser …“) – nur die von AFTVnews nehmen.
+2. **Entwickleroptionen freischalten:** Einstellungen → Mein Fire TV → Info → siebenmal auf den Gerätenamen drücken, bis „Sie sind jetzt Entwickler“ erscheint.
+3. **Downloader erlauben:** Einstellungen → Mein Fire TV → Entwickleroptionen → „Apps unbekannter Herkunft installieren“ → bei **Downloader** auf „An“.
+4. **Mediathek Plus laden:** Downloader öffnen, ins Adressfeld den Code **`2980288`** eingeben → Los → „Installieren“. Der Code führt zur Datei unter `7hdmm9pp2w-code.github.io/Mediathek-Plus/tv.apk` – diese Adresse geht auch direkt. Danach kann die APK-Datei gelöscht werden; Mediathek Plus steht unter „Apps“.
+
+Tipp: Statt mit der Fernbedienung zu tippen, geht es schneller mit der Fire-TV-App auf dem Handy – sie dient als Tastatur.
+
+**Android TV / Google TV:** „Downloader“ (ebenfalls von **AFTVnews**) aus dem Google Play Store installieren, in den Einstellungen unter Apps → Sicherheit & Einschränkungen → „Unbekannte Quellen“ für Downloader erlauben (je nach Gerät etwas anders benannt), dann wie Schritt 4 (Code `2980288`). Oder per `adb install`.
 
 Bedienung: ↑/↓ zappt (bzw. P+/P−), OK öffnet die Senderliste, ≡ merkt den Sender als Favorit, Zurück schließt bzw. beendet. Neue Funktionen kommen automatisch, ohne neue Installation. Ohne App geht es auch im Browser des Fernsehers: [Sofa im Browser](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/sofa/).
 
