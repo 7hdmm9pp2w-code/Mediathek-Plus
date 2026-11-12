@@ -27,7 +27,7 @@ services:
     ports:
       - "8080:8080"                       # links ggf. anderen Port wählen
     environment:
-      MX_PASSWORD: "bitte-ändern"         # Pflicht
+      MX_PASSWORD: "bitte-ändern"         # Pflicht – eigenes Passwort, das Beispiel ist gesperrt
       TZ: Europe/Berlin
       PUID: 1026                          # dein Benutzer (Synology meist 1026 / 100)
       PGID: 100
