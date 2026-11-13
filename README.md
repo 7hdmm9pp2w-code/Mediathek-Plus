@@ -27,7 +27,7 @@
 | ⬇&nbsp;**Laden** | Deutsch und Original in einer Datei, Untertitel als Spur, fertig benannt für Plex, Jellyfin und Kodi – Filme, Serien und Dokus auf Wunsch in eigene Ordner; Senderlogo auf Wunsch entfernt |
 | 📚&nbsp;**Bibliothek** | Alles Geladene an einem Ort – abspielen, im Ordner zeigen, weiterempfehlen. Mit Jellyfin oder Emby verbunden: auch alles von dort, mit „▶ In Jellyfin abspielen“ |
 | 📤&nbsp;**Teilen** | Filmtipps als Liste mit einem einzigen Link – wer die App hat, übernimmt alle mit einem Klick |
-| 🖥&nbsp;**Fernseher** | Läuft im Sofa-Modus auf Fire TV und Android TV als eigene App – bedient mit der Fernbedienung, mit Live-TV, Senderliste und Filmtipps per QR-Code aufs Handy. Andere Fernseher (z. B. LG) über ihren Browser – [Installation](#auf-dem-fernseher) |
+| 🖥&nbsp;**Fernseher** | Läuft im Sofa-Modus auf Fire TV und Android TV als eigene App – bedient mit der Fernbedienung, mit Live-TV, Senderliste und Filmtipps per QR-Code aufs Handy. Andere Fernseher über ihren Browser – [Installation](#auf-dem-fernseher) |
 | 🗄&nbsp;**NAS** | Läuft auch als Docker-Container auf Synology & Co.; die Desktop-App schickt Downloads dorthin, das NAS lädt rund um die Uhr, Einstellungen gelten auf beiden gleich – einrichten mit dem [yml-Baukasten](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/nas/), [Anleitung](NAS.md) |
 
 ## Neu in 3.5
@@ -78,7 +78,7 @@ Erst nachschlagen? Die [Hilfe](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/
 Kein Server, kein Konto, keine Analyse, keine Werbung. Mediathek Plus sammelt keine Daten und gibt nichts weiter.
 
 - **App am Rechner und NAS:** Merkliste, Verlauf, Vorschläge und Einstellungen bleiben auf deinem Rechner bzw. NAS.
-- **Sofa im Browser und auf dem Fernseher** (LG, Fire TV, Android TV): Meine Liste, Weiterschauen, Lieblingssender, Lautstärke und Einstellungen bleiben im Speicher des Browsers bzw. Fernsehers und werden nicht übertragen. Die Oberfläche und die Daten der Startseite kommen von GitHub Pages.
+- **Sofa im Browser und auf dem Fernseher** (Fire TV, Android TV, Fernseher-Browser): Meine Liste, Weiterschauen, Lieblingssender, Lautstärke und Einstellungen bleiben im Speicher des Browsers bzw. Fernsehers und werden nicht übertragen. Die Oberfläche und die Daten der Startseite kommen von GitHub Pages.
 - Für Suche, Filminfos, Bilder, Trailer, Videos und Downloads fragt Mediathek Plus direkt bei den unten genannten Diensten und den Sendern an. Diese sehen dabei deine IP-Adresse und den Suchbegriff bzw. Filmtitel; es gelten ihre Datenschutzbestimmungen.
 
 Bitte nur für Inhalte nutzen, die du privat speichern darfst. Kopiergeschützte Inhalte lädt die App nicht. Kein Angebot von ARD, ZDF oder anderen Sendern.
