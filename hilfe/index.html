@@ -5,12 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="icon" href="../icon.png">
 <title>Hilfe – Mediathek Plus</title>
-<!-- Kurze Hilfe zum Nachschlagen: erster Start, Suchen, Laden, Plex/Jellyfin, Senderlogo, NAS, Probleme.
-     Verlinkt aus dem Über-Fenster und der öffentlichen README. Anker (#suchen …) bitte nicht umbenennen. -->
+<!-- Hilfe zum Nachschlagen, gegliedert nach Nutzung: Sofa und Live-TV, Fernseher, Standard/Profi, Medienserver, Senderlogo, NAS, Probleme.
+     Verlinkt aus dem Über-Fenster und der öffentlichen README. Anker (#suchen …) bitte nicht umbenennen – Links von außen zeigen darauf.
+     Ortsangaben (Einstellungen → Bereich) folgen src/lib/Settings.svelte; bei Änderungen dort hier mitziehen.
+     Version: Die Hilfe entspricht einer App-Version (data-version). Was erst mit der nächsten Version kommt, trägt data-neu,
+     was dann wegfällt data-alt – je Element eine Zeile. scripts/publish-help.sh setzt Version und Marken beim Veröffentlichen um. -->
 <style>
-  :root { --bg: #f6f7f9; --card: #fff; --text: #1d2330; --muted: #5d6576; --accent: #3a5bd9; --border: #dfe3ea; --code: #f0f2f6; }
+  :root { --bg: #f6f7f9; --card: #fff; --text: #1d2330; --muted: #5d6576; --accent: #3a5bd9; --border: #dfe3ea; --code: #f0f2f6; --tag: #eef1fb; }
   @media (prefers-color-scheme: dark) {
-    :root { --bg: #15171c; --card: #1f2229; --text: #e9ecf2; --muted: #a2a9b8; --accent: #7c97ff; --border: #343844; --code: #171a20; }
+    :root { --bg: #15171c; --card: #1f2229; --text: #e9ecf2; --muted: #a2a9b8; --accent: #7c97ff; --border: #343844; --code: #171a20; --tag: #262c3d; }
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -23,20 +26,29 @@
   h3 { font-size: 15px; margin: 16px 0 4px; }
   p, li { color: var(--muted); }
   p { margin: 4px 0 10px; }
-  ul { margin: 4px 0 10px; padding-left: 20px; }
+  ul, ol { margin: 4px 0 10px; padding-left: 20px; }
   li { margin: 3px 0; }
   b, strong { color: var(--text); font-weight: 600; }
-  code { background: var(--code); border: 1px solid var(--border); border-radius: 5px; padding: 0 4px; font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; }
+  code, kbd { background: var(--code); border: 1px solid var(--border); border-radius: 5px; padding: 0 4px; font: 13px ui-monospace, SFMono-Regular, Menlo, monospace; color: var(--text); }
   a { color: var(--accent); }
   nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
   nav a { text-decoration: none; font-size: 14px; padding: 4px 10px; border: 1px solid var(--border); border-radius: 999px; background: var(--bg); }
+  .ways { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 12px 0 4px; }
+  .ways a { display: block; text-decoration: none; padding: 12px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg); }
+  .ways b { display: block; font-size: 15px; color: var(--accent); }
+  /* Farb-Emojis zeichnen breiter als ihre Laufweite – feste Breite, sonst kleben sie am Text */
+  .ways i, h2 i { font-style: normal; display: inline-block; width: 1.6em; }
+  .ways span { display: block; font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .pro { display: inline-block; font-size: 12px; font-weight: 600; color: var(--accent); background: var(--tag); border-radius: 6px; padding: 0 6px; margin-left: 4px; vertical-align: 1px; }
   table { border-collapse: collapse; width: 100%; margin: 6px 0 10px; font-size: 15px; }
   td { padding: 6px 8px; border-top: 1px solid var(--border); vertical-align: top; color: var(--muted); }
   td:first-child { white-space: nowrap; color: var(--text); width: 1%; }
   .note { font-size: 14px; }
+  .ver { font-size: 13px; margin: 0 0 8px; }
   .top { display: block; text-align: right; font-size: 13px; margin-top: 6px; }
-  @media (max-width: 520px) {
+  @media (max-width: 560px) {
     section { padding: 16px; }
+    .ways { grid-template-columns: 1fr; }
     td:first-child { white-space: normal; }
   }
 </style>
@@ -46,17 +58,26 @@
   <section>
     <img class="logo" src="../icon.png" alt="">
     <h1 id="oben">Mediathek Plus – Hilfe</h1>
+    <p class="ver">Für Version <span data-version>3.6.0</span></p>
     <p>Das Wichtigste zum Nachschlagen. Fehlt etwas? Im Über-Fenster der App unter „Idee vorschlagen…“ oder „Problem melden…“ Bescheid geben. <a href="https://github.com/7hdmm9pp2w-code/Mediathek-Plus">Mediathek Plus auf GitHub ↗</a></p>
+    <div class="ways">
+      <a href="#sofa"><b><i>🛋</i>Ich will schauen</b><span>Sofa, Live-TV, Für später</span></a>
+      <a href="#profi"><b><i>⬇</i>Ich will laden</b><span>Standard und Profi: suchen, laden, sammeln</span></a>
+      <a href="#fernseher"><b><i>📺</i>Am Fernseher</b><span>Fire TV, Android TV, Browser</span></a>
+    </div>
     <nav aria-label="Inhalt">
       <a href="#start">Erster Start</a>
-      <a href="#aufbau">Aufbau</a>
+      <a href="#sofa">Sofa</a>
+      <a href="#live">Live-TV</a>
+      <a href="#fernseher">Fernseher</a>
+      <a href="#browser">Im Browser</a>
+      <a href="#profi">Standard und Profi</a>
       <a href="#suchen">Suchen</a>
       <a href="#merkliste">Merkliste</a>
       <a href="#laden">Laden</a>
-      <a href="#medienserver">Plex, Jellyfin, Kodi</a>
+      <a href="#medienserver">Plex, Jellyfin, Emby</a>
       <a href="#senderlogo">Senderlogo</a>
       <a href="#teilen">Teilen</a>
-      <a href="#profi">Standard und Profi</a>
       <a href="#nas">NAS</a>
       <a href="#probleme">Wenn etwas nicht klappt</a>
     </nav>
@@ -81,26 +102,118 @@
       <li><code>.deb</code> für Debian und Ubuntu installieren – oder die <code>.AppImage</code> ausführbar machen (<code>chmod +x</code>) und starten.</li>
     </ul>
     <h3>Willkommen-Fenster</h3>
-    <p>Beim ersten Start fragt die App, wohin die Filme sollen, und bietet zwei kostenlose Hilfsprogramme an: <b>yt-dlp</b> und <b>ffmpeg</b>. Sie werden für ARTE, ZDF, Deutsch + Original, Untertitel und MP3 gebraucht. Sind sie schon auf dem Rechner, nimmt die App die vorhandenen, sonst lädt sie die offiziellen Versionen in ihren eigenen Ordner.</p>
+    <p>Beim ersten Start fragt die App, wie du sie nutzen willst. Das lässt sich jederzeit ändern (<a href="#profi">Standard und Profi</a>).</p>
+    <table>
+      <tr><td>🛋 Sofa</td><td>Entdecken und schauen: Filme, Serien und Live-TV direkt abspielen. Nichts einzurichten – vorausgewählt.</td></tr>
+      <tr><td>⬇ Standard</td><td>Schauen und herunterladen: Filme auf den Rechner laden, mit Merkliste.</td></tr>
+      <tr><td>🛠 Profi</td><td>Alle Funktionen für Sammler: Medienserver, NAS, Dateinamen, Senderlogo.</td></tr>
+    </table>
+    <p>Wer Standard oder Profi wählt, legt noch den Zielordner fest. Außerdem bietet die App zwei kostenlose Hilfsprogramme an: <b>yt-dlp</b> und <b>ffmpeg</b>. Sie werden für ARTE, ZDF, Deutsch + Original, Untertitel und MP3 gebraucht. Sind sie schon auf dem Rechner, nimmt die App die vorhandenen, sonst lädt sie die offiziellen Versionen in ihren eigenen Ordner.</p>
     <a class="top" href="#oben">↑ nach oben</a>
   </section>
 
-  <section id="aufbau">
-    <h2>Aufbau</h2>
+  <section id="sofa">
+    <h2><i>🛋</i>Sofa – entdecken und schauen</h2>
+    <p>Eine ruhige Oberfläche zum Schauen, ohne Ordner und Einstellungen. Ganz mit Maus, Pfeiltasten oder Fernbedienung bedienbar; einfach lostippen sucht.</p>
+    <h3>Startseite</h3>
+    <p>Oben der Film des Tages, darunter Reihen: <b>Weiterschauen</b>, <b>Gespeichert</b>, <b>Passend zu dir</b>, <b>Sehenswert</b>, <b>Neu in den Mediatheken</b>, <b>Läuft bald ab</b>, <b>Serien</b>, <b>Dokus</b>, <b>Kurz &amp; gut</b> (Beiträge von 1 bis 15 Minuten nach Themen), <b>Für Kinder</b> und <b>Meine Liste</b>. Ein Klick auf einen Sender in der Leiste darüber zeigt nur dessen Filme – mit „Tipp bei …“ und dem Live-Programm des Senders.</p>
+    <h3>Ein Film</h3>
+    <ul>
+      <li>Ein Klick öffnet die Detailkarte mit Szenenbild, Plakat, Beschreibung und Trailer. Ein Klick daneben schließt sie.</li>
+      <li>Fassungen (Original, Audiodeskription, derselbe Film bei zwei Sendern) sind zu einer Karte zusammengefasst – gespielt wird automatisch die beste. Serien sind eine Karte mit Staffeln und Folgen.</li>
+      <li><b>+ Meine Liste</b> merkt einen Film, <b>⬇ Für später</b> speichert ihn auf dem Rechner: Er läuft dann auch ohne Internet. Nach dem Ansehen fragt Sofa, ob die Datei weg kann – „Behalten“ geht immer.</li>
+      <li><b>🌙 Ab 22 Uhr:</b> Filme ab 16 oder 18 Jahren zeigen die Sender erst abends. „⬇ Für später“ lädt sie dann von selbst.</li>
+    </ul>
+    <h3>Player</h3>
+    <ul>
+      <li><b>Weiterschauen</b> an der gemerkten Stelle, <b>„Nächste Folge in 10 s“</b> bei Serien.</li>
+      <li><b>Ton &amp; Untertitel:</b> Deutsch ↔ Original an derselben Stelle umschalten, Untertitel zuschalten (wenn der Sender welche hat).</li>
+      <li><b>☾ Einschlaf-Timer:</b> nach 30, 60 oder 90 Minuten oder am Ende der Sendung – wird sanft leiser und hält an.</li>
+      <li><b>Bild im Bild</b> löst den Film als kleines Fenster ab, zum Weiterstöbern. <b>⛶ Vollbild</b> oben rechts zeigt die ganze Oberfläche im Vollbild.</li>
+    </ul>
+    <h3>Menü ☰</h3>
+    <p>„Untertitel immer an“, „Originalton bevorzugen“, „Mit Live-TV starten“ und „Bild im Bild beim Wegwechseln“. Darunter <b>Mehr Funktionen …</b> – der Weg zu Standard und Profi.</p>
+    <a class="top" href="#oben">↑ nach oben</a>
+  </section>
+
+  <section id="live">
+    <h2><i>📺</i>Live-TV</h2>
+    <p><b>● Live</b> in der Senderleiste startet sofort mit dem zuletzt gesehenen Sender (beim ersten Mal ARD). Alle öffentlich-rechtlichen Sender sind dabei, von ARD und ZDF über die Dritten bis ARTE und 3sat. Gesperrte Sender, etwa der ORF außerhalb Österreichs, blendet die App von selbst aus.</p>
     <table>
-      <tr><td>✨ Für dich</td><td>Film des Tages, Tipps von filmdienst.de und den Mediathekperlen, dazu „Passend zu dir“ – Vorschläge nach deinen Downloads und deiner Merkliste. Was dich nicht interessiert, verschwindet mit ✕. Ein Klick auf „Für dich“ klappt Film des Tages und Vorschläge zu; „neu dabei“ sortiert die Tipps nach dem, was zuletzt hinzugekommen ist.</td></tr>
+      <tr><td><kbd>↑</kbd> <kbd>↓</kbd></td><td>nächster bzw. vorheriger Sender – am Rechner auch mit dem Mausrad, auf Handy und Tablet mit Wischen</td></tr>
+      <tr><td><kbd>Enter</kbd></td><td>Senderliste mit „Jetzt läuft“</td></tr>
+      <tr><td><kbd>1</kbd>–<kbd>9</kbd></td><td>Sender direkt wählen</td></tr>
+      <tr><td><kbd>0</kbd></td><td>zurück zum vorher gesehenen Sender</td></tr>
+      <tr><td><kbd>S</kbd></td><td>Sender als Favorit merken – Favoriten stehen ganz vorn</td></tr>
+      <tr><td><kbd>L</kbd> · <kbd>U</kbd></td><td>Tonspur bzw. Originalton · Untertitel (ARD, ZDF)</td></tr>
+      <tr><td><kbd>P</kbd> · <kbd>F</kbd></td><td>Bild im Bild · Vollbild</td></tr>
+      <tr><td><kbd>Leertaste</kbd></td><td>Pause</td></tr>
+      <tr><td><kbd>Esc</kbd></td><td>Player schließen</td></tr>
+    </table>
+    <p class="note">Bei Filmen statt Live-TV spulen <kbd>←</kbd> <kbd>→</kbd> 10 Sekunden, <kbd>↑</kbd> <kbd>↓</kbd> ändern die Lautstärke und <kbd>0</kbd> springt an den Anfang. Am Fernseher: siehe <a href="#fernseher">Fernseher</a>.</p>
+    <a class="top" href="#oben">↑ nach oben</a>
+  </section>
+
+  <section id="fernseher">
+    <h2>Am Fernseher</h2>
+    <h3>Fire TV (Stick, Cube) – einmalig, etwa 5 Minuten</h3>
+    <ol>
+      <li><b>App „Downloader“ installieren:</b> Suche (Lupe) → „Downloader“ → die App vom Herausgeber <b>AFTVnews</b> wählen. Vorsicht vor Nachahmern mit ähnlichem Namen.</li>
+      <li><b>Entwickleroptionen freischalten:</b> Einstellungen → Mein Fire TV → Info → siebenmal auf den Gerätenamen drücken, bis „Sie sind jetzt Entwickler“ erscheint.</li>
+      <li><b>Downloader erlauben:</b> Einstellungen → Mein Fire TV → Entwickleroptionen → „Apps unbekannter Herkunft installieren“ → bei Downloader auf „An“.</li>
+      <li><b>Mediathek Plus laden:</b> Downloader öffnen, den Code <b><code>2980288</code></b> eingeben → Los → „Installieren“. Danach steht Mediathek Plus unter „Apps“; die APK-Datei kann weg.</li>
+    </ol>
+    <p class="note">Tipp: Mit der Fire-TV-App auf dem Handy als Tastatur geht das Tippen schneller.</p>
+    <h3>Android TV und Google TV</h3>
+    <p>„Downloader“ (ebenfalls von AFTVnews) aus dem Play Store installieren, in den Einstellungen bei Apps → Sicherheit &amp; Einschränkungen „Unbekannte Quellen“ für Downloader erlauben (je nach Gerät etwas anders benannt), dann wie Schritt 4 mit dem Code <code>2980288</code>.</p>
+    <h3>Bedienung mit der Fernbedienung</h3>
+    <table>
+      <tr><td>↑ ↓ bzw. P+ P−</td><td>Sender wechseln</td></tr>
+      <tr><td>OK</td><td>Senderliste</td></tr>
+      <tr><td>≡</td><td>Sender als Favorit merken</td></tr>
+      <tr><td>▶ ⏸ ⏪ ⏩</td><td>abspielen, anhalten, spulen</td></tr>
+      <tr><td>Zurück</td><td>schließt, was offen ist; auf der Startseite zweimal drücken zum Beenden</td></tr>
+    </table>
+    <p><b>Teilen</b> zeigt am Fernseher einen QR-Code – mit dem Handy scannen, dann ist der Filmtipp dort zum Weiterschicken. Neue Funktionen kommen automatisch, ohne neue Installation.</p>
+    <h3>Andere Fernseher</h3>
+    <p>Im Browser des Fernsehers <a href="#browser">Sofa im Browser</a> öffnen – dieselbe Oberfläche mit Live-TV, bedienbar mit der Fernbedienung.</p>
+    <a class="top" href="#oben">↑ nach oben</a>
+  </section>
+
+  <section id="browser">
+    <h2>Sofa im Browser</h2>
+    <p>Ohne Installation auf Tablet, Handy oder im Fernseher-Browser: <a href="../sofa/">7hdmm9pp2w-code.github.io/Mediathek-Plus/sofa/</a>. Weiterschauen und Meine Liste merkt sich jedes Gerät für sich.</p>
+    <ul>
+      <li><b>Als App ablegen:</b> ☰ → „📲 Als App auf den Home-Bildschirm“ (iPhone/iPad: in Safari „Teilen“ → „Zum Home-Bildschirm“).</li>
+      <li>Speichern für später, Vorschläge nach deinem Geschmack und neue Folgen von selbst gibt es nur in der App am Rechner – ☰ → „Mehr mit der App …“.</li>
+    </ul>
+    <a class="top" href="#oben">↑ nach oben</a>
+  </section>
+
+  <section id="profi">
+    <h2><i>⬇</i>Standard und Profi</h2>
+    <p><b>Standard</b> ist zum Suchen und Laden da und zeigt nur das Nötigste. <b>Profi</b> zeigt alle Optionen – Dateinamen, eigene Ordner für Serien und Dokus, Untertitel, Senderlogo, Logo-Archiv, NAS, Medienserver – und das Protokoll. Funktionen nur für Profi tragen hier das Zeichen <span class="pro">Profi</span>.</p>
+    <ul>
+      <li><b>Vom Sofa aus:</b> ☰ → „Mehr Funktionen …“ erklärt, was Standard und Profi bieten; ab dem zweiten Mal geht es mit einem Klick.</li>
+      <li><b>Zurück zum Sofa:</b> „🛋 Zurück zum Sofa“ oben in der Seitenleiste.</li>
+      <li><b>Umschalten:</b> unten im Einstellungsfenster zwischen Sofa, Standard und Profi. Einstellungen aus Profi wirken auch in Standard weiter.</li>
+    </ul>
+    <h3 id="aufbau">Aufbau</h3>
+    <table>
+      <tr><td>✨ Für dich</td><td>Film des Tages, Tipps von filmdienst.de und den Mediathekperlen, dazu „Passend zu dir“ – Vorschläge nach deinen Downloads und deiner Merkliste, mit Begründung. Was nicht interessiert, verschwindet mit ✕; „neu dabei“ zeigt zuerst, was seit dem letzten Mal dazukam.</td></tr>
       <tr><td>🔎 Mediathek</td><td>Suche in allen öffentlich-rechtlichen Mediatheken auf einmal.</td></tr>
       <tr><td>🎬 Kostenlose Filme</td><td>Spielfilme, die irgendwo legal kostenlos laufen (von kinogrid.com).</td></tr>
-      <tr><td>📚 Bibliothek</td><td>Alles, was du geladen hast: abspielen, im Ordner zeigen, weiterempfehlen.</td></tr>
+      <tr><td>📚 Bibliothek</td><td>Alles, was du geladen hast: abspielen, im Ordner zeigen, weiterempfehlen. Fehlt eine Datei, ist der Film blass markiert; 🧹 Aufräumen nimmt solche heraus.</td></tr>
       <tr><td>★ Merkliste</td><td>Gemerkte Filme, verfolgte Serien und gemerkte Suchen.</td></tr>
+      <tr><td>Logo-Archiv <span class="pro">Profi</span></td><td>Senderlogos aus Filmen entfernen, die schon auf der Platte liegen (<a href="#senderlogo">Senderlogo</a>).</td></tr>
     </table>
-    <p>Ein Klick auf einen Film öffnet rechts die Details mit Vorschau, Filminfos und den Knöpfen zum Laden, Merken und Teilen. Unten links zeigt ein kleiner Status, was gerade lädt; ein Klick darauf öffnet die Warteschlange. Einstellungen: ⚙ oben rechts oder <code>⌘,</code> bzw. <code>Strg+,</code>.</p>
+    <p>Ein Klick auf einen Film öffnet rechts die Details mit Vorschau, Filminfos und den Knöpfen zum Laden, Merken und Teilen. Unten in der Seitenleiste stehen die laufenden Downloads; ein Klick öffnet die Warteschlange. <span class="pro">Profi</span> Poster oder Tabelle schaltest du oben rechts um (<kbd>⌘1</kbd>/<kbd>⌘2</kbd>, Windows/Linux <kbd>Strg</kbd>), die Plakatgröße stellt ein Regler daneben ein (<kbd>⌘+</kbd> / <kbd>⌘−</kbd>). Einstellungen: ⚙ oben rechts oder <kbd>⌘,</kbd> bzw. <kbd>Strg+,</kbd>.</p>
     <a class="top" href="#oben">↑ nach oben</a>
   </section>
 
   <section id="suchen">
     <h2>Suchen</h2>
-    <p>Einfach eintippen: Titel, Reihe oder Name. Oben steht, was am besten passt. Für genauere Suchen:</p>
+    <p>Einfach eintippen: Titel, Reihe oder Name. Oben steht, was am besten passt. Englische Titel führen auch zum deutschen Film („Anatomy of a Fall“), Akzente und Zusammenschreibung spielen keine Rolle, und bei Tippfehlern fragt die App „Meintest du …?“. Für genauere Suchen:</p>
     <table>
       <tr><td><code>"Eis"</code></td><td>nur das ganze Wort – findet „Eis“, aber nicht „Reise“</td></tr>
       <tr><td><code>!arte</code></td><td>nur dieser Sender</td></tr>
@@ -111,8 +224,16 @@
       <tr><td><code>mit: Nina Hoss</code></td><td>alle Filme mit dieser Schauspielerin bzw. diesem Schauspieler</td></tr>
     </table>
     <p>Kombinieren geht auch, etwa <code>!zdf #Terra X</code> oder <code>+"Das Boot"</code>.</p>
-    <p>Ins Suchfeld lässt sich außerdem die <b>Adresse einer Sender-Seite</b> einfügen (z. B. aus der ARD-Mediathek) – die App holt das Video von dort. Auch der <b>Link einer geteilten Liste</b> funktioniert im Suchfeld.</p>
-    <p>Hinter den Treffern zeigt die App Bewertung, Jahr, Genre, Regie und Besetzung (von TMDB, sonst Wikidata). <b>⏳ noch 2 Tage</b> heißt: Der Film verschwindet bald aus der Mediathek.</p>
+    <p>Ins Suchfeld lässt sich außerdem die <b>Adresse einer Sender-Seite</b> einfügen (z. B. aus der ARD-Mediathek oder die Seite einer ganzen Serie) – die App holt die Videos von dort. Auch der <b>Link einer geteilten Liste</b> funktioniert im Suchfeld.</p>
+    <h3>Was an den Treffern steht</h3>
+    <table>
+      <tr><td>★ 7,8</td><td>Bewertung, dazu Jahr, Genre, Regie und Besetzung (von TMDB, sonst Wikidata)</td></tr>
+      <tr><td>+ Englisch</td><td>Originalton ist dabei – beim Laden kommt er als zweite Tonspur mit</td></tr>
+      <tr><td>bestes Bild</td><td>derselbe Film läuft auch anderswo, hier mit deutlich besserem Bild</td></tr>
+      <tr><td>⏳ noch 2 Tage</td><td>der Film verschwindet bald aus der Mediathek</td></tr>
+      <tr><td>✓ geladen</td><td>schon auf der Platte – die Details sagen, warum und wo</td></tr>
+    </table>
+    <p>Läuft ein Film bei mehreren Sendern, nennen die Details der schwächeren Fassung, wo es ihn besser gibt („Besser bei ARTE: mit Originalton“).</p>
     <a class="top" href="#oben">↑ nach oben</a>
   </section>
 
@@ -122,7 +243,9 @@
       <li><b>★ Merken</b> legt einen Film auf die Merkliste.</li>
       <li><b>🔔 Suche merken</b> über der Trefferliste verfolgt eine ganze Suche, etwa „Tatort“ oder „Regie: Wim Wenders“. Kommt etwas Neues dazu, steht es in der Merkliste, die App meldet sich und lädt es auf Wunsch selbst.</li>
       <li>Findet die Suche nichts: <b>Benachrichtigen, wenn es kommt</b> – taucht der Film später auf, sagt die App Bescheid.</li>
-      <li>Aufräumen: Einträge mit <code>⌫</code> bzw. <code>Entf</code> entfernen; <code>⌘Z</code> bzw. <code>Strg+Z</code> holt sie zurück.</li>
+      <li>Gibt es einen gemerkten Film nur mit eingebrannten Untertiteln, meldet die Merkliste, sobald eine saubere Fassung auftaucht.</li>
+      <li>Folgen, die schon geladen sind, überspringt die Merkliste; sie stehen aufklappbar unter „N übersprungen“.</li>
+      <li>Aufräumen: Einträge mit <kbd>⌫</kbd> bzw. <kbd>Entf</kbd> entfernen; <kbd>⌘Z</kbd> bzw. <kbd>Strg+Z</kbd> holt sie zurück.</li>
     </ul>
     <a class="top" href="#oben">↑ nach oben</a>
   </section>
@@ -130,34 +253,40 @@
   <section id="laden">
     <h2>Laden</h2>
     <ul>
-      <li><b>⬇ Herunterladen</b> in den Details oder auf der Karte. Die Downloads laufen im Hintergrund weiter.</li>
-      <li><b>Deutsch + Original:</b> Steht <b>+ OV</b> am Film, gibt es auch die Originalfassung. Beide Tonspuren landen in einer Datei – im Player die Sprache umschalten. Mit „Originalton dazu“ in den Einstellungen geschieht das immer.</li>
-      <li><b>Der kleine Pfeil</b> neben dem Knopf bietet Varianten: nur Deutsch, nur Ton (MP3), auf dem NAS laden, mit Senderlogo laden.</li>
-      <li><b>Anhalten und fortsetzen</b> geht bei jedem Download, auch nach einem Neustart. Fehlgeschlagene startet „↻ Fehlgeschlagene wiederholen“ in der Warteschlange neu.</li>
-      <li><b>Qualität:</b> „Beste“ für den Fernseher, „Standard“ (bis 720p) spart Platz.</li>
+      <li><b>⬇ Herunterladen</b> in den Details oder auf der Karte. Die Downloads laufen im Hintergrund weiter; ist einer fertig, führt die Mitteilung zur Datei.</li>
+      <li><b>Deutsch + Original:</b> Steht „+ Englisch“ (oder eine andere Sprache) am Film, gibt es die Originalfassung. Beide Tonspuren landen in einer Datei – im Player die Sprache umschalten. „Originalton als zweite Tonspur“ (Einstellungen → Dateieigenschaften) macht das immer.</li>
+      <li><b>Originalton nachrüsten:</b> Liegt ein Film nur auf Deutsch auf der Platte und gibt es inzwischen das Original, steht in den Details „+ Englisch ergänzen“. Geladen wird nur die Tonspur.</li>
+      <li><b>Der kleine Pfeil</b> neben dem Knopf bietet Varianten: nur Deutsch, nur Ton, auf dem NAS laden, mit Senderlogo laden.</li>
+      <li><b>Mehrere auf einmal:</b> Auswählen und in der Auswahlleiste laden – mit „Ablegen: automatisch / in Filme / Serien / Dokus“.</li>
+      <li><b>Anhalten und fortsetzen</b> geht bei jedem Download, auch nach einem Neustart. „↻ Fehlgeschlagene wiederholen“ in der Warteschlange startet Abgebrochenes neu.</li>
+      <li><b>Qualität</b> (Einstellungen → Dateieigenschaften): „Beste (HD)“ für den Fernseher, „Standard“ (bis 720p) spart Platz. <span class="pro">Profi</span> „H.265 bevorzugen“ lädt bei ARTE etwas kleinere Dateien, die aber nicht jedes Gerät abspielt.</li>
+      <li><b>Untertitel</b> <span class="pro">Profi</span>: „Untertitel mitladen“ legt sie als Spur in die Videodatei, „… zusätzlich als SRT-Datei“ auch daneben.</li>
+      <li><b>Dateinamen</b> <span class="pro">Profi</span> (Einstellungen → Speicherorte &amp; Dateinamen): Vorschläge wählen oder mit „Eigene Vorlage…“ selbst schreiben, mit Platzhaltern wie <code>{titel}</code>, <code>{jahr}</code>, <code>{serie}</code>, <code>{staffel}</code> und <code>{folge}</code>.</li>
       <li>Schon geladen oder schon in der Warteschlange? Dann fragt die App nach, bevor sie etwas doppelt lädt.</li>
     </ul>
     <a class="top" href="#oben">↑ nach oben</a>
   </section>
 
   <section id="medienserver">
-    <h2>Plex, Jellyfin und Kodi</h2>
+    <h2>Plex, Jellyfin, Emby und Kodi</h2>
     <ul>
-      <li><b>Für Plex/Jellyfin/Kodi vorbereiten</b> (Einstellungen): Serien kommen in Staffel-Ordner, Infos und Untertitel in die Datei, dazu eine .nfo-Datei und das Filmplakat. Der Medienserver erkennt dann alles sofort. Im Profi-Modus lässt sich das einzeln einstellen.</li>
-      <li><b>Eigene Ordner für Filme, Serien und Dokus</b> (Profi-Modus, Einstellungen → Download) – passend zu getrennten Bibliotheken. Was ein Film ist, erkennt die App selbst; in den Details lässt sich das vor dem Laden ändern.</li>
-      <li><b>Jeder Film in eigenem Ordner</b> (Profi-Modus, Einstellungen → Dateien): Ordner und Datei heißen gleich, .nfo und Untertitel liegen mit drin.</li>
-      <li><b>Jellyfin oder Emby verbinden</b> (Profi-Modus, Einstellungen → Heimnetz): Adresse und API-Schlüssel eintragen, Benutzer wählen. Die App zeigt dann, was du schon hast und gesehen hast, die Bibliothek enthält auch alles vom Server, und „Passend zu dir“ lernt aus deinen gesehenen Filmen. Nach jedem Download liest der Server neu ein.</li>
+      <li><b>Für Plex/Jellyfin/Kodi vorbereiten</b> (Einstellungen → Dateieigenschaften): Serien kommen in Staffel-Ordner, Infos und Untertitel in die Datei, dazu eine .nfo-Datei und das Filmplakat. Der Medienserver erkennt dann alles sofort. <span class="pro">Profi</span> stellt das einzeln ein.</li>
+      <li><b>Eigene Ordner für Filme, Serien und Dokus</b> <span class="pro">Profi</span> (Einstellungen → Speicherorte &amp; Dateinamen) – passend zu getrennten Bibliotheken. Was Film, Serie oder Doku ist, erkennt die App selbst; in den Details lässt sich das vor dem Laden ändern.</li>
+      <li><b>Eigener Ordner für jeden Film</b> <span class="pro">Profi</span> (gleicher Bereich): Ordner und Datei heißen gleich, .nfo und Untertitel liegen mit drin.</li>
+      <li><b>Jellyfin oder Emby verbinden</b> <span class="pro">Profi</span> (Einstellungen → Heimnetz &amp; Medienserver): Adresse und API-Schlüssel eintragen, Benutzer wählen. Die App zeigt dann, was du schon hast und gesehen hast, die Bibliothek enthält auch alles vom Server („▶ In Jellyfin abspielen“), und „Passend zu dir“ lernt aus deinen gesehenen Filmen. Nach jedem Download liest der Server neu ein.</li>
     </ul>
     <a class="top" href="#oben">↑ nach oben</a>
   </section>
 
   <section id="senderlogo">
-    <h2>Senderlogo entfernen</h2>
-    <p>Die App deckt das Senderlogo in der Ecke ab, damit es beim Anschauen nicht stört. Sie kennt die Logos von 17 Sendern (ARD, ZDF, arte, 3sat, die meisten Dritten, KiKA, Phoenix …); vom Logo bleibt meist kaum etwas übrig.</p>
+    <h2>Senderlogo entfernen <span class="pro">Profi</span></h2>
+    <p>Die App deckt das Senderlogo in der Ecke ab, damit es beim Anschauen nicht stört. Sie kennt die Logos von 20 Sendern (ARD, ZDF, arte, 3sat, die Dritten, KiKA, Phoenix, ONE, ZDFneo, ZDFinfo, ARD-alpha …); vom Logo bleibt meist kaum etwas übrig.</p>
     <ul>
-      <li><b>Einschalten:</b> Profi-Modus, Einstellungen → Download → „Senderlogo entfernen“. Einzelne Filme trotzdem mit Logo: Pfeil am Knopf → „Mit Logo laden“. Das Entfernen läuft nach dem Download als eigener Auftrag – immer einer nach dem anderen, damit jeder mit voller Geschwindigkeit rechnet.</li>
-      <li><b>Nachträglich:</b> Bei fertigen Downloads in der Warteschlange und in der Bibliothek gibt es „Logo entfernen“ – im Profi-Modus ersetzt es bei geladenen Filmen mit Logo den Download-Knopf.</li>
-      <li><b>Nachts:</b> Mit „Erst nachts entfernen (1–6 Uhr)“ sind Downloads sofort da, gerechnet wird erst nachts – auf dem NAS wie am Rechner. Der Rechner muss dafür eingeschaltet und die App geöffnet sein; während des Entfernens hält die App ihn wach. „Jetzt entfernen“ in der Warteschlange startet einen wartenden Auftrag sofort.</li>
+      <li><b>Beim Laden:</b> Einstellungen → Dateieigenschaften → „Senderlogo entfernen“. Einzelne Filme trotzdem mit Logo: Pfeil am Knopf → „Mit Logo laden“. Das Entfernen läuft nach dem Download als eigener Auftrag – immer einer nach dem anderen, der nächste Download startet sofort.</li>
+      <li><b>Nachträglich:</b> Bei geladenen Filmen mit Logo heißt der Hauptknopf „Logo entfernen“ – in Warteschlange, Bibliothek und Details.</li>
+      <li><b>Logo-Archiv</b> in der Seitenleiste: Ordner wählen, die App zeigt alle Filme darin, auch solche, die nicht mit der App geladen wurden.</li>
+      <li><b>Original behalten:</b> Mit „Beim Logo-Entfernen Original behalten“ kommt der Film als „Name-ohne-logo.mp4“ neben das unveränderte Original.</li>
+      <li><b>Nachts:</b> Mit „Erst nachts entfernen (1–6 Uhr)“ sind Downloads sofort da, gerechnet wird erst nachts – auf dem NAS wie am Rechner. Der Rechner muss dafür eingeschaltet und die App geöffnet sein. „Jetzt entfernen“ in der Warteschlange startet einen wartenden Auftrag sofort.</li>
       <li><b>Dauer:</b> Ein Spielfilm braucht auf einem aktuellen Mac rund 5 Minuten. Die App nutzt den Hardware-Encoder, wenn er sauber arbeitet; sonst dauert es deutlich länger.</li>
       <li><b>Gut</b> klappt es bei Filmen, Serien und Dokus. Bei Studiosendungen und Sport lässt die App das Bild lieber unberührt, als Kulissen oder Spielstände zu verwischen.</li>
     </ul>
@@ -167,22 +296,17 @@
   <section id="teilen">
     <h2>Teilen</h2>
     <ul>
-      <li><b>Teilen</b> in den Details schickt einen Filmtipp mit Link. Der Link öffnet beim Empfänger die App oder – ohne App – die Seite beim Sender.</li>
-      <li><b>Mehrere Filme auf einmal:</b> in der Merkliste Häkchen setzen (anderswo mit <code>⌘</code>/<code>Strg</code>-Klick auswählen) → „Teilen…“. Alles geht als eine Liste mit einem einzigen Link raus; wer die App hat, übernimmt alle mit einem Klick.</li>
+      <li><b>↗ Teilen</b> in den Details öffnet das Teilen-Menü des Systems (AirDrop, Nachrichten, Mail …); unter Windows liegt der Filmtipp mit Link in der Zwischenablage. Der Link öffnet beim Empfänger die App oder – ohne App – die Seite beim Sender.</li>
+      <li><b>Mehrere Filme auf einmal:</b> in der Merkliste Häkchen setzen (anderswo mit <kbd>⌘</kbd>/<kbd>Strg</kbd>-Klick auswählen) → „Teilen…“. Alles geht als eine Liste mit einem einzigen Link raus; wer die App hat, übernimmt alle mit einem Klick.</li>
+      <li>Am Fernseher zeigt „Teilen“ einen QR-Code fürs Handy.</li>
       <li>Gespeichert wird dabei nichts – die Liste steckt nur im Link.</li>
     </ul>
     <a class="top" href="#oben">↑ nach oben</a>
   </section>
 
-  <section id="profi">
-    <h2>Standard und Profi</h2>
-    <p><b>Standard</b> zeigt nur das Nötigste: Zielordner, Qualität, Originalton, „Für Plex/Jellyfin/Kodi vorbereiten“ und Filminfos. <b>Profi</b> zeigt alle Optionen – Untertitel, Dateinamen-Vorlagen, eigene Ordner für Serien und Dokus, Senderlogo, NAS, Medienserver – und das Protokoll. Umschalten: unten links in den Einstellungen. Einstellungen aus dem Profi-Modus wirken auch in Standard weiter.</p>
-    <a class="top" href="#oben">↑ nach oben</a>
-  </section>
-
   <section id="nas">
     <h2>NAS</h2>
-    <p>Mediathek Plus läuft auch als Docker-Container auf Synology &amp; Co. und lädt dort rund um die Uhr. Die Desktop-App schickt Downloads hin (Profi-Modus, Einstellungen → Heimnetz) und zeigt dessen Warteschlange; Merkliste und gemerkte Suchen können auf dem NAS liegen, dann lädt es neue Folgen auch bei ausgeschaltetem Rechner.</p>
+    <p>Mediathek Plus läuft auch als Docker-Container auf Synology &amp; Co. und lädt dort rund um die Uhr. Die Desktop-App schickt Downloads hin (<span class="pro">Profi</span> Einstellungen → Heimnetz &amp; Medienserver) und zeigt dessen Warteschlange; Merkliste und gemerkte Suchen können auf dem NAS liegen, dann lädt es neue Folgen auch bei ausgeschaltetem Rechner. Download-Einstellungen gelten auf Rechner und NAS gleich, nur die Zielordner bleiben je Gerät.</p>
     <ul>
       <li><a href="../nas/">yml-Baukasten</a> – Freigaben eintragen, fertige <code>docker-compose.yml</code> erhalten</li>
       <li><a href="https://github.com/7hdmm9pp2w-code/Mediathek-Plus/blob/main/NAS.md">Anleitung Schritt für Schritt</a></li>
@@ -194,18 +318,22 @@
     <h2>Wenn etwas nicht klappt</h2>
     <h3>„Nicht mehr verfügbar“</h3>
     <p>Der Sender hat den Film aus der Mediathek genommen. Dagegen hilft nur, ihn zu merken – vielleicht kommt er wieder („Benachrichtigen, wenn es kommt“).</p>
+    <h3>„Ab 22 Uhr“ bzw. „wartet auf 22 Uhr“</h3>
+    <p>Filme ab 16 oder 18 Jahren geben die Sender erst abends heraus (ab 16: 22 Uhr, ab 18: 23 Uhr). Der Download startet dann von selbst und versucht es bei Bedarf noch einmal – am Rechner muss die App dafür geöffnet sein, auf dem NAS geschieht es ohnehin.</p>
+    <h3>Bild bricht ab, „Vielleicht ist es abgelaufen“</h3>
+    <p>Meist ist das WLAN zu schwach – etwa beim Fire-TV-Stick hinter dem Fernseher. Die App überbrückt kurze Aussetzer selbst; hilft das nicht, den Abstand zum Router verkleinern – beim Stick hilft oft schon ein HDMI-Verlängerungskabel, damit er nicht direkt hinter dem Fernseher steckt.</p>
+    <h3>Film spielt nicht oder ohne Bild</h3>
+    <p>Manche Geräte können kein H.265. Wer im Profi-Modus „H.265 bevorzugen“ eingeschaltet hat, schaltet es aus und lädt den Film noch einmal.</p>
     <h3>Untertitel fehlen oder sind leer</h3>
     <p>Meist ist ffmpeg zu alt (vor Version 7). Die App sagt dann Bescheid – unter Windows mit einem Knopf, der ein aktuelles ffmpeg lädt, auf dem Mac und unter Linux mit dem passenden Befehl.</p>
     <h3>Ein Film fehlt in der Suche</h3>
-    <p>Die Suche baut auf der Liste von MediathekView auf. Fehlt ein Film dort, die Adresse der Sender-Seite ins Suchfeld einfügen.</p>
+    <p>Die Suche baut auf der Liste von MediathekView auf. Fehlt ein Film dort, die Adresse der Sender-Seite ins Suchfeld einfügen. Sind Sender ausgewählt oder ist „nur ab 60 Min.“ an, bietet die App „Ohne Filter suchen“.</p>
     <h3>Download schlägt fehl</h3>
     <p>Erst „Wiederholen“ versuchen – oft war nur die Verbindung weg. Klappt es wieder nicht: am Download auf „Melden…“ klicken. Das öffnet ein kurzes Formular, der Fehlerbericht liegt zum Einfügen in der Zwischenablage. Im Profi-Modus zeigt das Protokoll, was genau passiert ist.</p>
-    <h3>„Jugendschutz: wartet auf 22 Uhr“</h3>
-    <p>Filme ab 16 oder 18 Jahren geben die Sender erst abends heraus. Der Download startet dann von selbst – am Rechner muss die App dafür geöffnet sein, auf dem NAS geschieht es ohnehin.</p>
     <h3>Updates</h3>
-    <p>Die App sieht regelmäßig selbst nach und lädt neue Versionen im Hintergrund. Sofort nachsehen: Über-Fenster → „Nach Updates suchen“ (Mac: auch im App-Menü).</p>
+    <p>Die App sieht regelmäßig selbst nach und lädt neue Versionen im Hintergrund. Sofort nachsehen: Über-Fenster → „Nach Updates suchen“ (Mac: auch im App-Menü). Die Fernseher-App und Sofa im Browser sind immer auf dem neuesten Stand.</p>
     <h3>Datenschutz</h3>
-    <p>Kein Konto, kein eigener Server, keine Analyse – Merkliste, Verlauf und Einstellungen bleiben auf deinem Rechner. <a href="https://github.com/7hdmm9pp2w-code/Mediathek-Plus#datenschutz">Einzelheiten</a></p>
+    <p>Kein Konto, kein eigener Server, keine Analyse, keine Werbung – Merkliste, Verlauf und Einstellungen bleiben auf deinem Gerät. <a href="https://github.com/7hdmm9pp2w-code/Mediathek-Plus#datenschutz">Einzelheiten</a></p>
     <h3>Mehr</h3>
     <p>Downloads, Neuigkeiten und die NAS-Anleitung: <a href="https://github.com/7hdmm9pp2w-code/Mediathek-Plus">Mediathek Plus auf GitHub ↗</a></p>
     <a class="top" href="#oben">↑ nach oben</a>
