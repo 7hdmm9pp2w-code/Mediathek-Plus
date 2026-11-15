@@ -79,7 +79,7 @@ Das Senderlogo zu entfernen heißt, den Film neu zu kodieren. Auf einem NAS mit 
 - **Nur bei Intel-Modellen mit Grafikeinheit** (z. B. DS224+, DS423+, DS724+, DS920+). Bei AMD-Ryzen-Modellen (DS923+, DS1522+) und ARM-Modellen (DS223, DS124) weglassen: Fehlt `/dev/dri`, startet der Container nicht.
 - Die nötigen Rechte holt sich der Container selbst, an `PUID`/`PGID` ändert sich nichts.
 - Ob es klappt, steht im Protokoll des ersten Logo-Auftrags: „Encoder gewählt: … (Grafikeinheit)“. Sonst rechnet die App wie bisher auf dem Prozessor – das Ergebnis ist dasselbe, nur langsamer.
-- Auf Wunsch rechnet das NAS nur nachts (1–6 Uhr): Einstellungen → Download (Profi-Modus) → „Erst nachts entfernen“.
+- Auf Wunsch rechnet das NAS nur nachts (1–6 Uhr): Einstellungen → Dateieigenschaften → „Erst nachts entfernen“.
 
 ## Per Kommandozeile
 
@@ -117,7 +117,7 @@ Außerhalb der Synology heißen die Pfade anders – `/volume1/…` in Schritt 2
 
 ## Mit der Desktop-App verbinden
 
-In der App unter **Einstellungen → Heimnetz** (Profi-Modus) Adresse (z. B. `diskstation.local:8080`) und Passwort eingeben. Dann gibt es **„⬇ Auf dem NAS laden“**, und die Warteschlange zeigt die Downloads des NAS. Auf Wunsch liegen Merkliste und gemerkte Suchen auf dem NAS – dann lädt es neue Folgen selbst, rund um die Uhr. Verbundene Geräte lassen sich im Browser unter Einstellungen → Geräte trennen.
+In der App unter **Einstellungen → Heimnetz & Medienserver** Adresse (z. B. `diskstation.local:8080`) und Passwort eingeben. Dann gibt es **„⬇ Auf dem NAS laden“**, und die Warteschlange zeigt die Downloads des NAS. Auf Wunsch liegen Merkliste und gemerkte Suchen auf dem NAS – dann lädt es neue Folgen selbst, rund um die Uhr. Verbundene Geräte lassen sich im Browser unter Einstellungen → Geräte trennen.
 
 ## Gut zu wissen
 

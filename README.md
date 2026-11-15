@@ -6,14 +6,19 @@
 
 <table>
   <tr>
-    <td align="center" width="25%"><a href="bilder/sofa.jpg"><img src="bilder/sofa.jpg" alt="Sofa: Startseite mit Film des Tages und Sehenswert"></a><br><sub><b>🛋 Sofa</b><br>entdecken und schauen</sub></td>
-    <td align="center" width="25%"><a href="bilder/fernseher.jpg"><img src="bilder/fernseher.jpg" alt="Live-TV auf dem Fernseher mit Senderliste und „Jetzt läuft“"></a><br><sub><b>📺 Fernseher</b><br>Live-TV mit Senderliste</sub></td>
-    <td align="center" width="25%"><a href="bilder/standard.jpg"><img src="bilder/standard.jpg" alt="Standard: Mediathek-Suche mit Detailansicht und „bestes Bild“"></a><br><sub><b>Standard</b><br>suchen und laden</sub></td>
-    <td align="center" width="25%"><a href="bilder/profi.jpg"><img src="bilder/profi.jpg" alt="Profi: „Für dich“ mit Filtern nach Sender, Genre und Jahrzehnt"></a><br><sub><b>Profi</b><br>für Sammler</sub></td>
+    <td align="center" width="33%"><a href="bilder/sofa.jpg"><img src="bilder/sofa.jpg" alt="Sofa: Startseite mit Film des Tages und Sehenswert"></a><br><sub><b>🛋 Sofa</b><br>entdecken und schauen</sub></td>
+    <td align="center" width="33%"><a href="bilder/fernseher.jpg"><img src="bilder/fernseher.jpg" alt="Live-TV auf dem Fernseher mit Senderliste und „Jetzt läuft“"></a><br><sub><b>📺 Fernseher</b><br>Live-TV mit Senderliste</sub></td>
+    <td align="center" width="33%"><a href="bilder/pro.jpg"><img src="bilder/pro.jpg" alt="Pro: „Für dich“ mit Reitern oben und den Details als Schublade neben den Plakaten"></a><br><sub><b>Pro</b><br>suchen, laden, sammeln</sub></td>
   </tr>
 </table>
 
 <sub>Zum Vergrößern anklicken. Film- und Sendebilder für die Screenshots weichgezeichnet – in der App sind sie scharf.</sub>
+
+<p align="center"><img src="bilder/live.gif" width="720" alt="Sofa: Maus auf die Live-Kachel – stumme Vorschau, Klick – das Bild fährt auf Fenstergröße auf"></p>
+
+**Eine Minute Rundgang durch 4.0** – Sofa, Live-TV, Suche, Schublade, Bibliothek:
+
+https://github.com/user-attachments/assets/41bdba22-896c-4b49-95d5-16667be9fd43
 
 ## Was die App kann
 
@@ -30,14 +35,15 @@
 | 🖥&nbsp;**Fernseher** | Läuft im Sofa-Modus auf Fire TV und Android TV als eigene App – bedient mit der Fernbedienung, mit Live-TV, Senderliste und Filmtipps per QR-Code aufs Handy. Andere Fernseher über ihren Browser – [Installation](#auf-dem-fernseher) |
 | 🗄&nbsp;**NAS** | Läuft auch als Docker-Container auf Synology & Co.; die Desktop-App schickt Downloads dorthin, das NAS lädt rund um die Uhr, Einstellungen gelten auf beiden gleich – einrichten mit dem [yml-Baukasten](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/nas/), [Anleitung](NAS.md) |
 
-## Neu in 3.5
+## Neu in 4.0: hübscher und einfacher
 
-- **Live-TV wie am Fernseher:** „● Live“ startet sofort mit dem letzten Sender. Zappen mit ↑/↓, Senderleiste am Rand, Senderliste, Ziffern, Lieblingssender ganz vorn und kurz eingeblendet, was gerade läuft. Am Rechner mit dem Mausrad, auf Handy und Tablet mit Wischen. Gesperrte Sender (z. B. ORF außerhalb Österreichs) blendet die App von selbst aus.
-- **Vorschau: App für Fire TV und Android TV** – Live-TV und Sofa direkt auf dem Fernseher, bedient mit der Fernbedienung (siehe [Installation](#auf-dem-fernseher)).
-- **Komfort beim Schauen:** Einschlaf-Timer, Untertitel auch live, Sperrbildschirm und Medientasten, Bild im Bild, Vollbild, „Mit Live-TV starten“.
-- **Beste Fassung auf einen Blick:** Läuft ein Film bei mehreren Sendern, zeigt die App, wo das Bild deutlich besser ist.
-- **Originalton nachrüsten:** Für schon geladene Filme nur die Original-Tonspur nachladen.
-- **Sicherer:** Prüfung des gesamten Codes – vor allem der NAS ist jetzt besser gegen Passwort-Durchprobieren geschützt. *NAS mit dem Beispielpasswort „bitte-ändern“? Bitte in der docker-compose.yml ändern.*
+- **Reiter oben:** Für dich, Mediathek, Bibliothek und Merkliste – rechts Downloads, Einstellungen, Sofa-Modus und Hilfe. Unter Windows mit eigenen Fensterknöpfen statt heller Systemleiste.
+- **Nur noch zwei Modi: Sofa und Pro.** Die Einstellungen zeigen allen die vier Bereiche aus dem bisherigen Profi-Modus; was du eingestellt hattest, bleibt.
+- **Alles zum Eingrenzen unter „Filter“:** Sender, Länge, Genre, Jahre, Bewertung und „In den Treffern suchen“ in einem Fenster.
+- **Details als Schublade** neben den Plakaten; die Leertaste öffnet eine große Ansicht, die Pfeiltasten blättern.
+- **Bibliothek mit Zoom** per Mausrad oder Trackpad, „Zufall“ und – mit NAS – auch dessen Downloads.
+- **Live-TV im Sofa:** Kacheln mit Bild der laufenden Sendung und stummer Vorschau; beim Klick fährt das Bild auf Fenstergröße auf.
+- **Fernseher:** neue App 1.1.0 für Fire TV und Android TV – Downloader-Code 2980288, einfach drüber installieren.
 
 Alle Änderungen: [Releases](../../releases)
 
@@ -79,7 +85,8 @@ Kein Server, kein Konto, keine Analyse, keine Werbung. Mediathek Plus sammelt ke
 
 - **App am Rechner und NAS:** Merkliste, Verlauf, Vorschläge und Einstellungen bleiben auf deinem Rechner bzw. NAS.
 - **Sofa im Browser und auf dem Fernseher** (Fire TV, Android TV, Fernseher-Browser): Meine Liste, Weiterschauen, Lieblingssender, Lautstärke und Einstellungen bleiben im Speicher des Browsers bzw. Fernsehers und werden nicht übertragen. Die Oberfläche und die Daten der Startseite kommen von GitHub Pages.
-- Für Suche, Filminfos, Bilder, Trailer, Videos und Downloads fragt Mediathek Plus direkt bei den unten genannten Diensten und den Sendern an. Diese sehen dabei deine IP-Adresse und den Suchbegriff bzw. Filmtitel; es gelten ihre Datenschutzbestimmungen.
+- Für Suche, Filminfos, Bilder, Trailer, Videos und Downloads fragt Mediathek Plus direkt bei den unten genannten Diensten und den Sendern an. Diese sehen dabei deine IP-Adresse und den Suchbegriff bzw. Filmtitel; es gelten ihre Datenschutzbestimmungen. Dazu gehören auch GitHub (Updates, yt-dlp und FFmpeg), YouTube (Trailer) und die Programmdaten der ARD (Live-TV). Live-Kacheln laden beim Überfahren eine stumme Vorschau direkt vom Sender. Mit „Filminfos“ aus gehen keine Filmtitel an TMDB, Wikidata und Wikipedia.
+- **„Problem melden…“** öffnet das öffentliche Formular auf GitHub mit den letzten Zeilen des Protokolls. Benutzernamen in Pfaden und Adressen im Heimnetz sind geschwärzt; bitte vor dem Abschicken durchsehen.
 
 Bitte nur für Inhalte nutzen, die du privat speichern darfst. Kopiergeschützte Inhalte lädt die App nicht. Kein Angebot von ARD, ZDF oder anderen Sendern.
 
@@ -88,7 +95,7 @@ Bitte nur für Inhalte nutzen, die du privat speichern darfst. Kopiergeschützte
 Mediathek Plus baut auf freier Software und offenen Daten auf:
 [yt-dlp](https://github.com/yt-dlp/yt-dlp) und [FFmpeg](https://ffmpeg.org) (nicht mitgeliefert, die App nutzt vorhandene oder lädt die offiziellen Versionen) ·
 [MediathekViewWeb](https://mediathekviewweb.de) / [MediathekView](https://mediathekview.de) ([unterstützen](https://mediathekview.de/spenden/)) ·
-[kinogrid.com](https://kinogrid.com) · Filmtipps von [filmdienst.de](https://www.filmdienst.de) und den [Mediathekperlen](https://nexxtpress.de/author/mediathekperlen/) (mit freundlicher Genehmigung) ·
+Filmtipps von [filmdienst.de](https://www.filmdienst.de) und den [Mediathekperlen](https://nexxtpress.de/author/mediathekperlen/) (mit freundlicher Genehmigung) ·
 [TMDB](https://www.themoviedb.org) · [Wikidata](https://www.wikidata.org) (CC0) und [Wikipedia](https://de.wikipedia.org) (CC BY-SA) ·
 [Tauri](https://tauri.app) (MIT/Apache-2.0) · [hls.js](https://github.com/video-dev/hls.js) (Apache-2.0) · [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator) (MIT).
 Alle sind unabhängig und nicht für diese App verantwortlich.
