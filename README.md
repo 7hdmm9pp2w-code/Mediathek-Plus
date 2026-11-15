@@ -77,7 +77,7 @@ Bedienung: ↑/↓ zappt (bzw. P+/P−), OK öffnet die Senderliste, ≡ merkt d
 
 Erst nachschlagen? Die [Hilfe](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/hilfe/) erklärt die häufigsten Fragen – von „Download schlägt fehl“ bis „Nicht mehr verfügbar“.
 
-[Issues → New issue](../../issues/new/choose): **Fehler melden** oder **Idee vorschlagen** (kostenloses GitHub-Konto nötig, Meldungen sind öffentlich). Oder direkt in der App: Über → Problem melden…
+[Issues → New issue](../../issues/new/choose): **Fehler melden** oder **Idee vorschlagen** (kostenloses GitHub-Konto nötig, Meldungen sind öffentlich). Oder direkt in der App: Hilfe → Problem melden…
 
 ## Datenschutz
 
