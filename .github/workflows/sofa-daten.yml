@@ -6,15 +6,21 @@ name: Sofa-Daten
 
 on:
   schedule:
-    - cron: "17 */4 * * *"
+    # stündlich geplant: GitHub lässt geplante Läufe oft aus oder verschiebt sie um Stunden –
+    # so kommt trotzdem regelmäßig etwas an. Ohne Änderung entsteht kein Commit.
+    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
+  actions: write # alte Caches löschen
 
 concurrency:
   group: sofa-daten
   cancel-in-progress: false
+
+env:
+  IMAGE: ghcr.io/7hdmm9pp2w-code/mediathek-plus:latest
 
 jobs:
   export:
@@ -29,16 +35,51 @@ jobs:
           ref: gh-pages
           path: pages
           fetch-depth: 2
-      - name: Mediathek Plus starten (nur 127.0.0.1, ohne Passwort)
+
+      # Image nur bei einem neuen Release laden, sonst aus dem Cache: jeder Abruf zählt sonst
+      # als NAS-Download und verfälscht die Zahlen auf der Paketseite
+      - name: Aktuelles Release
+        id: rel
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: echo "tag=$(gh release view -R "$GITHUB_REPOSITORY" --json tagName -q .tagName)" >> "$GITHUB_OUTPUT"
+      - name: Image aus dem Cache
+        id: img
+        uses: actions/cache/restore@v4
+        with:
+          path: image.tar.zst
+          key: nas-image-${{ steps.rel.outputs.tag }}
+      - name: Image laden
         run: |
-          docker run -d --name mx --network host -e MX_HOST=127.0.0.1 -e MX_PORT=8080 ghcr.io/7hdmm9pp2w-code/mediathek-plus:latest
-          for i in $(seq 1 60); do curl -sf -X POST -H 'Content-Type: application/json' -d '{}' http://127.0.0.1:8080/api/app_info >/dev/null && break; sleep 2; done
+          if [ -f image.tar.zst ]; then zstd -dc image.tar.zst | docker load; else docker pull -q "$IMAGE"; fi
+
+      # Filminfos (Plakate, TMDB) von Lauf zu Lauf behalten – weniger Anfragen, schnellerer Lauf
+      - name: Daten aus dem Cache
+        uses: actions/cache/restore@v4
+        with:
+          path: mx-data
+          key: sofa-data-${{ github.run_id }}
+          restore-keys: sofa-data-
+
+      - name: Mediathek Plus starten (nur 127.0.0.1, ohne Passwort)
+        id: start
+        run: |
+          mkdir -p mx-data
+          docker run -d --name mx --network host -v "$PWD/mx-data:/data" -e MX_HOST=127.0.0.1 -e MX_PORT=8080 "$IMAGE"
+          v=""
+          for i in $(seq 1 60); do
+            v=$(curl -sf -X POST -H 'Content-Type: application/json' -d '{}' http://127.0.0.1:8080/api/app_info | python3 -c 'import json,sys; print(json.load(sys.stdin)["version"])' 2>/dev/null) && break
+            sleep 2
+          done
+          echo "Image-Version: $v (Release ${{ steps.rel.outputs.tag }})"
+          echo "version=$v" >> "$GITHUB_OUTPUT"
       - name: Reihen abfragen
         run: |
           mkdir -p pages/sofa
           python3 tools/sofa-export.py http://127.0.0.1:8080 pages/sofa/sofa.json
+
       # Immer nur EIN Daten-Commit obenauf: ist der letzte schon einer, wird er ersetzt (Force-Push) –
-      # sonst wüchse die Historie um ~1,3 MB alle 4 Stunden (≈ 3 GB im Jahr)
+      # sonst wüchse die Historie um ~1,3 MB je Lauf
       - name: Veröffentlichen
         working-directory: pages
         run: |
@@ -52,5 +93,36 @@ jobs:
           else
             git commit -m "$msg" && git push
           fi
-      - if: always()
-        run: docker logs mx 2>&1 | tail -30
+
+      - name: Server beenden
+        if: always()
+        run: |
+          docker logs mx 2>&1 | tail -30
+          docker stop mx >/dev/null || true
+          # Der Container schreibt als root – für den Cache lesbar machen
+          sudo chown -R "$(id -u):$(id -g)" mx-data || true
+          du -sh mx-data || true
+      # Image erst sichern, wenn es wirklich zum Release passt (das NAS-Image erscheint kurz nach dem Release)
+      - name: Image für den Cache packen
+        if: steps.img.outputs.cache-hit != 'true' && format('v{0}', steps.start.outputs.version) == steps.rel.outputs.tag
+        run: docker save "$IMAGE" | zstd -T0 -3 -q -o image.tar.zst
+      - name: Image in den Cache
+        if: steps.img.outputs.cache-hit != 'true' && format('v{0}', steps.start.outputs.version) == steps.rel.outputs.tag
+        uses: actions/cache/save@v4
+        with:
+          path: image.tar.zst
+          key: nas-image-${{ steps.rel.outputs.tag }}
+      - name: Daten in den Cache
+        uses: actions/cache/save@v4
+        with:
+          path: mx-data
+          key: sofa-data-${{ github.run_id }}
+      - name: Alte Caches löschen
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.rel.outputs.tag }}
+        run: |
+          gh cache list -R "$GITHUB_REPOSITORY" --key sofa-data- --sort created_at --order desc --json key -q '.[1:][].key' |
+            xargs -r -n1 gh cache delete -R "$GITHUB_REPOSITORY" || true
+          gh cache list -R "$GITHUB_REPOSITORY" --key nas-image- --json key -q '.[].key' |
+            { grep -vx "nas-image-$TAG" || true; } | xargs -r -n1 gh cache delete -R "$GITHUB_REPOSITORY" || true
