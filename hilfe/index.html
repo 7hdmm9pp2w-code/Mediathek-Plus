@@ -58,7 +58,7 @@
   <section>
     <img class="logo" src="../icon.png" alt="">
     <h1 id="oben">Mediathek Plus – Hilfe</h1>
-    <p class="ver">Für Version <span data-version>4.0.0</span></p>
+    <p class="ver">Für Version <span data-version>4.0.1</span></p>
     <p>Das Wichtigste zum Nachschlagen. Fehlt etwas? In der App oben rechts unter „Hilfe“ → „Idee vorschlagen…“ oder „Problem melden…“ Bescheid geben. <a href="https://github.com/7hdmm9pp2w-code/Mediathek-Plus">Mediathek Plus auf GitHub ↗</a></p>
     <div class="ways">
       <a href="#sofa"><b><i>🛋</i>Ich will schauen</b><span>Sofa, Live-TV, Für später</span></a>
@@ -201,7 +201,7 @@
     <h3 id="aufbau">Aufbau</h3>
     <p>Oben stehen vier Reiter, auch mit <kbd>⌘1</kbd>–<kbd>⌘4</kbd> (Windows/Linux <kbd>Strg+1</kbd>–<kbd>4</kbd>):</p>
     <table>
-      <tr><td>✨ Für dich</td><td>Tipps von filmdienst.de und den Mediathekperlen, dazu „Passend zu dir“ – Vorschläge nach deinen Downloads und deiner Merkliste, mit Begründung, als Reihe zum Blättern. Was nicht interessiert, verschwindet mit ✕; „neu dabei“ zeigt zuerst, was seit dem letzten Mal dazukam.</td></tr>
+      <tr><td>✨ Für dich</td><td>Tipps von filmdienst.de und den Mediathekperlen, dazu „Passend zu dir“ – Vorschläge nach deinen Downloads (auch denen auf dem NAS) und deiner Merkliste, mit Begründung, als Reihe zum Blättern. Was du lädst, verschwindet von selbst; was nicht interessiert, mit ✕ – mit NAS auch dort; „neu dabei“ zeigt zuerst, was seit dem letzten Mal dazukam.</td></tr>
       <tr><td>🔎 Mediathek</td><td>Suche in allen öffentlich-rechtlichen Mediatheken auf einmal. Ohne Suchbegriff schlägt „Probier mal:“ Beispielsuchen vor.</td></tr>
       <tr><td>📚 Bibliothek</td><td>Alles, was du geladen hast: abspielen, im Ordner zeigen, weiterempfehlen. Mit NAS stehen auch dessen Downloads hier. Fehlt eine Datei, ist der Film blass markiert; 🧹 Aufräumen nimmt solche heraus. „Zufall“ gleitet zu einem Film, „Senderlogos entfernen“ öffnet das <a href="#senderlogo">Logo-Archiv</a>.</td></tr>
       <tr><td>★ Merkliste</td><td>Gemerkte Filme, verfolgte Serien und gemerkte Suchen.</td></tr>
@@ -235,7 +235,7 @@
       <tr><td>+ Englisch</td><td>Originalton ist dabei – beim Laden kommt er als zweite Tonspur mit</td></tr>
       <tr><td>bestes Bild</td><td>derselbe Film läuft auch anderswo, hier mit deutlich besserem Bild</td></tr>
       <tr><td>⏳ noch 2 Tage</td><td>der Film verschwindet bald aus der Mediathek</td></tr>
-      <tr><td>✓ geladen</td><td>schon auf der Platte – die Details sagen, warum und wo</td></tr>
+      <tr><td>✓ geladen</td><td>schon auf der Platte oder auf dem NAS – die Details sagen, warum und wo</td></tr>
     </table>
     <p>Läuft ein Film bei mehreren Sendern, nennen die Details der schwächeren Fassung, wo es ihn besser gibt („Besser bei ARTE: mit Originalton“).</p>
     <a class="top" href="#oben">↑ nach oben</a>
@@ -263,7 +263,7 @@
       <li><b>Originalton nachrüsten:</b> Liegt ein Film nur auf Deutsch auf der Platte und gibt es inzwischen das Original, steht in den Details „+ Englisch ergänzen“. Geladen wird nur die Tonspur.</li>
       <li><b>Der kleine Pfeil</b> neben dem Knopf bietet Varianten: nur Deutsch, nur Ton, auf dem NAS laden, mit Senderlogo laden.</li>
       <li><b>Mehrere auf einmal:</b> Auswählen und in der Auswahlleiste laden – mit „Ablegen: automatisch / in Filme / Serien / Dokus“.</li>
-      <li><b>Anhalten und fortsetzen</b> geht bei jedem Download, auch nach einem Neustart. „↻ Fehlgeschlagene wiederholen“ in der Warteschlange startet Abgebrochenes neu.</li>
+      <li><b>Anhalten und fortsetzen</b> geht bei jedem Download, auch nach einem Neustart. „↻ Fehlgeschlagene wiederholen“ in der Warteschlange startet Abgebrochenes neu. „Fertige entfernen“ räumt Geladenes und Abgebrochenes weg – Fehlgeschlagene bleiben stehen, damit du sie nicht übersiehst.</li>
       <li><b>Qualität</b> (Einstellungen → Dateieigenschaften): „Beste (HD)“ für den Fernseher, „Standard“ (bis 720p) spart Platz. „H.265 bevorzugen“ lädt bei ARTE etwas kleinere Dateien, die aber nicht jedes Gerät abspielt.</li>
       <li><b>Untertitel</b>: „In die Videodatei“, „Als SRT-Datei“ oder „Beides“.</li>
       <li><b>Dateinamen</b> (Einstellungen → Speicherorte &amp; Dateinamen): Vorschläge wählen oder über „Eigene Vorlage …“ aus Bausteinen wie Titel, Jahr, Serie, Staffel und Folge zusammenklicken.</li>
@@ -312,7 +312,7 @@
 
   <section id="nas">
     <h2>NAS</h2>
-    <p>Mediathek Plus läuft auch als Docker-Container auf Synology &amp; Co. und lädt dort rund um die Uhr. Die Desktop-App schickt Downloads hin (Einstellungen → Heimnetz &amp; Medienserver) und zeigt dessen Warteschlange; Merkliste und gemerkte Suchen können auf dem NAS liegen, dann lädt es neue Folgen auch bei ausgeschaltetem Rechner. Download-Einstellungen gelten auf Rechner und NAS gleich, nur die Zielordner bleiben je Gerät.</p>
+    <p>Mediathek Plus läuft auch als Docker-Container auf Synology &amp; Co. und lädt dort rund um die Uhr. Die Desktop-App schickt Downloads hin (Einstellungen → Heimnetz &amp; Medienserver) und zeigt dessen Warteschlange; Merkliste und gemerkte Suchen können auf dem NAS liegen, dann lädt es neue Folgen auch bei ausgeschaltetem Rechner. Download-Einstellungen gelten auf Rechner und NAS gleich, nur die Zielordner bleiben je Gerät. Was das NAS geladen hat, zeigt die App auch am Rechner als „✓ geladen“ und fragt nach, bevor sie es noch einmal lädt; „✕“ bei „Passend zu dir“ gilt auf beiden.</p>
     <ul>
       <li><a href="../nas/">yml-Baukasten</a> – Freigaben eintragen, fertige <code>docker-compose.yml</code> erhalten</li>
       <li><a href="https://github.com/7hdmm9pp2w-code/Mediathek-Plus/blob/main/NAS.md">Anleitung Schritt für Schritt</a></li>
