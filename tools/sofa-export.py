@@ -8,6 +8,7 @@ Das TMDB-Token bleibt beim Server, in der Datei stehen nur Plakat-Adressen.
     python3 scripts/sofa-export.py http://127.0.0.1:8080 build-sofa/sofa.json
 """
 import json
+import re
 import sys
 import time
 import urllib.request
@@ -51,6 +52,13 @@ def slim(v):
     return out
 
 
+def series_key(v):
+    """Serienname klein, nur Buchstaben und Ziffern (Folgen ohne Serienangabe: Thema)"""
+    if not v.get("episode") and not v.get("series"):
+        return ""
+    return re.sub(r"[\W_]+", "", (v.get("series") or v.get("topic") or "").lower())
+
+
 def main():
     started = time.time()
     shelves = {}
@@ -92,7 +100,24 @@ def main():
         except Exception:
             pass
 
-    data = {"generated": int(time.time()), "stage": stage, "shelves": shelves, "infos": infos, "art": art, "trailers": trailers}
+    # 4.0.2: Bilder je Serie, von Lauf zu Lauf gesammelt – „Weiterschauen“ und „Nächste Folge“ finden so auch
+    # dann ein Bild, wenn die Serie längst nicht mehr in den Reihen steht (Schlüssel wie seriesKey in web.ts)
+    names = {}
+    try:
+        with open(OUT, encoding="utf-8") as f:
+            names = json.load(f).get("names") or {}
+    except Exception:
+        pass
+    for k in ("series", "kids", "docs"):
+        for v in shelves[k]:
+            key = series_key(v)
+            a = art.get(v["url"])
+            if key and a:
+                names.pop(key, None)
+                names[key] = a  # neu einsortiert = zuletzt gesehen
+    names = dict(list(names.items())[-2000:])
+
+    data = {"generated": int(time.time()), "stage": stage, "shelves": shelves, "infos": infos, "art": art, "trailers": trailers, "names": names}
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, separators=(",", ":"))
     print(f"{OUT}: {sum(len(s) for s in shelves.values())} Einträge, {len(infos)} Filminfos, {len(art)} Bilder, "
