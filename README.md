@@ -45,7 +45,7 @@ https://github.com/user-attachments/assets/41bdba22-896c-4b49-95d5-16667be9fd43
 - **Live-TV im Sofa:** Kacheln mit Bild der laufenden Sendung und stummer Vorschau; beim Klick fährt das Bild auf Fenstergröße auf.
 - **Fernseher:** neue App 1.1.0 für Fire TV und Android TV – Downloader-Code 2980288, einfach drüber installieren.
 
-Alle Änderungen: [Releases](../../releases)
+Alle Änderungen aller Versionen: [CHANGELOG.md](CHANGELOG.md) · Downloads: [Releases](../../releases)
 
 ## Installation
 
