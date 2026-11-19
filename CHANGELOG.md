@@ -3,6 +3,13 @@
 Was in welcher Version neu dazukam und was behoben wurde – die neueste steht oben.
 Zum Herunterladen: [neueste Version](https://github.com/7hdmm9pp2w-code/Mediathek-Plus/releases/latest) · [Hilfe](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/hilfe/)
 
+## 4.1.0
+
+### Neu
+- **Plakatgröße mit einem Klick:** kleine Knöpfe − und + unten rechts über den Plakaten, je eine Spalte mehr oder weniger. Bisher ging das nur mit Tastenkürzeln oder ⌘ + Mausrad. Die Plakate lassen sich außerdem kleiner stellen als bisher – praktisch, um lange Trefferlisten schnell durchzusehen.
+- **„Probier mal“ jeden Tag neu und immer mit Treffern:** Die Beispielsuchen auf der Startseite der Mediathek stammen jetzt aus dem, was gerade läuft – eine Regisseurin oder ein Regisseur und eine Hauptdarstellerin oder ein Hauptdarsteller aus gut bewerteten Filmen in den Mediatheken, dazu zwei Reihen mit aktuellen Folgen. Jeder Vorschlag ist vorher geprüft, ein Klick findet also immer etwas. Jeden Tag gibt es andere.
+- **Alles Neue von einem Sender:** Auf der Startseite der Mediathek steht unter „Probier mal:“ die Zeile „Neu bei: ARD · ZDF · ARTE · 3sat …“ (weitere Sender hinter „…“). Ein Klick zeigt alles von diesem Sender, das Neueste zuerst. Dasselbe geht mit einem Klick auf den Sendernamen in den Details – mit „‹ Zurück“ zur vorigen Suche. Die Senderauswahl im Filter bleibt dabei unverändert; ✕ am Schild „Neu bei …“ beendet die Ansicht.
+
 ## 4.0.3
 
 ### Neu
