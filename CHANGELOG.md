@@ -3,6 +3,15 @@
 Was in welcher Version neu dazukam und was behoben wurde – die neueste steht oben.
 Zum Herunterladen: [neueste Version](https://github.com/7hdmm9pp2w-code/Mediathek-Plus/releases/latest) · [Hilfe](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/hilfe/)
 
+## 4.2.1
+
+### Neu
+- **Zurück und vor wie im Browser:** Die App merkt sich die letzten 20 Ansichten – Reiterwechsel, Suchen samt Treffern, „Neu bei …“, geöffnete Serien – mit Auswahl und Position. Zurück geht mit dem Knopf „‹ …“ neben dem Suchfeld, der Zurück-Taste der Maus oder ⌘[ bzw. Alt+←, vor mit der Vor-Taste der Maus oder ⌘] bzw. Alt+→. Bisher kam man nur aus Sprüngen in die Mediathek einen Schritt zurück. Frühere Suchen kommen ohne neue Anfrage zurück.
+
+### Behoben
+- Der Film des Tages war manchmal einer, den man schon in Jellyfin oder Emby hat: Kurz nach dem Start war der Bestand des Medienservers noch nicht geladen, und die Wahl galt dann für den ganzen Tag. Jetzt wartet die Auswahl kurz auf den Bestand und wählt neu, falls der Film doch schon dort liegt.
+- ⬇ auf dem Plakat fehlt jetzt auch bei Filmen, die schon im Medienserver liegen – laden lässt er sich weiterhin über die Details.
+
 ## 4.2.0
 
 ### Neu
