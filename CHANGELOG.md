@@ -3,6 +3,20 @@
 Was in welcher Version neu dazukam und was behoben wurde – die neueste steht oben.
 Zum Herunterladen: [neueste Version](https://github.com/7hdmm9pp2w-code/Mediathek-Plus/releases/latest) · [Hilfe](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/hilfe/)
 
+## 4.2.0
+
+### Neu
+- **Serien mit vielen Staffeln übersichtlich:** In der Liste sind die Staffeln zugeklappt – eine Zeile je Staffel, etwa „This Is Us · Staffel 2 · Folge 1–18“, mit „Staffel laden“. Ein Klick (oder →) zeigt die Folgen, ← klappt wieder zu, mit ⌥/Alt alle auf einmal. Sucht man nur eine Staffel, steht sie gleich offen. In der Plakatansicht ist jede Serie eine Karte („16 Folgen · 2 Staffeln“) – „Neu bei ZDFneo“ zeigt so rund 130 Karten statt über 1600 Einträge.
+- **Zurück-Taste der Maus:** wirkt wie „‹ Zurück“ bzw. „‹ Für dich“ neben dem Suchfeld – etwa von „Alle Folgen anzeigen“ zurück zu „Für dich“. Ohne vorige Ansicht führt sie von einer Serie zurück zu den Serienkarten oder schließt die Details.
+- **Untertitel mit zwei Schaltern:** „In die Videodatei“ und „Als SRT-Datei daneben“ – wie bei den Filminfos (Datei, NFO). Beide an heißt: für alle Geräte; einer bleibt immer an. Die bisherige Einstellung bleibt erhalten.
+- **Einstellungen verschiebbar:** Das Fenster lässt sich an der Titelzeile verschieben, etwa um dahinter etwas nachzusehen. Doppelklick auf die Titelzeile holt es zurück in die Mitte.
+
+### Behoben
+- ⬇ und ☆ auf dem Plakat verschwinden sofort, wenn der Download startet (auch aufs NAS), und bleiben bei wartenden, laufenden und geladenen Filmen weg – ☆ auch bei Filmen, die schon im Medienserver liegen. Steht ein Film schon auf der Merkliste, bleibt ★ zum Entfernen. Vorher standen die Knöpfe weiter da und luden zum zweiten Klick ein.
+- Folgen mit dem Jahr als Staffel, etwa „(S2026/E03)“ bei ZDFneo, werden jetzt als Serie erkannt – mit „Staffel 2026“ beim Ablegen.
+- Esc blendet den Film des Tages aus – auch direkt nach dem Wechsel vom Sofa, wenn der Fokus noch im Suchfeld steht.
+- Einstellungen aufgeräumt: Werte und Knöpfe stehen überall in derselben Spalte – auch bei Feldern mit (i) wie „Ordner für Serien“, NAS-Passwort und API-Schlüssel; Benutzer, „Ändern“, „Trennen“ und „Filme prüfen“ beim Medienserver sind nicht mehr rechtsbündig. Der Auswahlrahmen der Reiter wird bei der Bedienung mit der Tab-Taste nicht mehr links abgeschnitten.
+
 ## 4.1.0
 
 ### Neu
