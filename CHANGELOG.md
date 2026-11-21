@@ -3,6 +3,11 @@
 Was in welcher Version neu dazukam und was behoben wurde – die neueste steht oben.
 Zum Herunterladen: [neueste Version](https://github.com/7hdmm9pp2w-code/Mediathek-Plus/releases/latest) · [Hilfe](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/hilfe/)
 
+## 4.2.2
+
+### Behoben
+- Film des Tages: Nach „⬇ Herunterladen“ zeigt der Knopf jetzt, was passiert – „Wartet“, „Lädt … 42 %“, „✓ Geladen“, beim Laden aufs NAS mit „NAS:“ davor; ein Klick öffnet die Warteschlange. Vorher blieb „Herunterladen“ stehen und lud zum zweiten Klick ein.
+
 ## 4.2.1
 
 ### Neu
