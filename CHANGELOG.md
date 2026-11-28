@@ -3,6 +3,15 @@
 Was in welcher Version neu dazukam und was behoben wurde – die neueste steht oben.
 Zum Herunterladen: [neueste Version](https://github.com/7hdmm9pp2w-code/Mediathek-Plus/releases/latest) · [Hilfe](https://7hdmm9pp2w-code.github.io/Mediathek-Plus/hilfe/)
 
+## 4.2.3
+
+### Neu
+- **Warteschlange mit Reitern:** „Aktiv“ (wartet, lädt, angehalten), „Fertig“, „Logos“ (Aufträge „Logo entfernen“) und „Probleme“ (fehlgeschlagen oder abgebrochen) – die beiden letzten nur, wenn dort etwas steht. Jeder Reiter zeigt Rechner und NAS zusammen; „Fertige entfernen“ steht unter „Fertig“, „Fehlgeschlagene wiederholen“ unter „Probleme“. Die Höhe bleibt beim Umschalten gleich und lässt sich weiter an der Oberkante ziehen.
+- **Größere Plakate zum Start:** Ohne eigene Einstellung sind die Plakate jetzt fast doppelt so breit – auf einem breiten Bildschirm etwa sieben nebeneinander. Eine schon gewählte Größe bleibt; ⌘0 bzw. Strg+0 springt auf die neue Standardgröße.
+
+### Behoben
+- Ist mediathekviewweb kurz gestört, sagt die App das jetzt deutlich – etwa „mediathekviewweb ist gerade gestört (Fehler 503) – bitte gleich noch einmal suchen“. Vorher stand dort „Antwort von mediathekviewweb nicht lesbar“, was nach einem Fehler der App klang.
+
 ## 4.2.2
 
 ### Behoben
